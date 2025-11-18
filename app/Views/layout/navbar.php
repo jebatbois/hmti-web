@@ -37,8 +37,6 @@
         <a href="/" class="block px-4 py-2 text-white hover:bg-hmti-primary">Beranda</a>
         <a href="/profil" class="block px-4 py-2 text-white hover:bg-hmti-primary">Profil</a>
         <a href="/berita" class="block px-4 py-2 text-white hover:bg-hmti-primary">Berita</a>
-        <a href="#" class="block px-4 py-2 text-hmti-accent font-bold">Login Anggota</a>
-    </div>
 </nav>
 
 <script>
