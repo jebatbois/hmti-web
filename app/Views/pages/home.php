@@ -2,16 +2,23 @@
 
 <?= $this->section('content'); ?>
 
-<section class="relative bg-gradient-to-br from-hmti-dark via-hmti-primary to-hmti-marine text-white overflow-hidden">
+<!-- 
+    PERUBAHAN: 
+    Saya menghapus class gradient bawaan Tailwind (bg-gradient-to-br...) 
+    dan menggantinya sepenuhnya dengan class custom 'animated-gradient' 
+    agar kita bisa mengatur arah 'gelombang' via CSS.
+-->
+<section class="relative text-white overflow-hidden animated-gradient">
+    
+    <!-- Background Decoration -->
     <div class="absolute top-0 left-0 w-64 h-64 bg-white opacity-5 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl"></div>
     <div class="absolute bottom-0 right-0 w-96 h-96 bg-hmti-accent opacity-10 rounded-full translate-x-1/3 translate-y-1/3 blur-3xl"></div>
 
- <section class="relative bg-gradient-to-br from-hmti-dark via-hmti-primary to-hmti-marine text-white overflow-hidden">
-    <div class="absolute top-0 left-0 w-64 h-64 bg-white opacity-5 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl"></div>
-    <div class="absolute bottom-0 right-0 w-96 h-96 bg-hmti-accent opacity-10 rounded-full translate-x-1/3 translate-y-1/3 blur-3xl"></div>
-
-    <div class="container mx-auto px-6 pt-32 pb-20 md:pt-40 md:pb-24 relative z-10">
-        <div class="flex flex-col-reverse md:flex-row items-center justify-center"> <div class="w-full md:w-3/5 text-center md:text-left mt-10 md:mt-0">
+    <div class="container mx-auto px-6 pt-28 pb-16 md:pt-32 md:pb-20 relative z-10">
+        <div class="flex flex-col-reverse md:flex-row items-center justify-center"> 
+            
+            <!-- Text Column -->
+            <div class="w-full md:w-3/5 text-center md:text-left mt-8 md:mt-0">
                 <span class="text-hmti-accent font-bold tracking-wider uppercase text-sm md:text-base mb-2 block">
                     Selamat Datang di Website Resmi
                 </span>
@@ -35,27 +42,25 @@
                 </div>
             </div>
 
-            <div class="w-full md:w-2/5 flex justify-center items-center py-8"> <div class="relative">
+            <!-- Logo Column -->
+            <div class="w-full md:w-2/5 flex justify-center items-center py-8"> 
+                <div class="relative">
                     <img src="/img/hmti.png" alt="Logo HMTI Besar" 
-                         class="relative w-48 h-48 md:w-80 md:h-80 object-contain animate-bounce-slow filter drop-shadow-lg" style="border-radius: 50%;"> </div>
+                         class="relative w-48 h-48 md:w-80 md:h-80 object-contain animate-bounce-slow filter drop-shadow-lg" style="border-radius: 50%;"> 
+                </div>
             </div>
         </div>
     </div>
     
+    <!-- Gelombang Bawah (Wave SVG) -->
     <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
-        <svg class="relative block w-[calc(100%+1.3px)] h-16 md:h-24 text-white" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#ffffff"></path>
-        </svg>
-    </div>
-</section>
-    
-    <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
-        <svg class="relative block w-[calc(100%+1.3px)] h-16 md:h-24 text-white" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <svg class="relative block w-[calc(100%+1.3px)] h-10 md:h-16 text-white" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
             <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#ffffff"></path>
         </svg>
     </div>
 </section>
 
+<!-- FEATURES SECTION -->
 <section class="py-20 bg-white">
     <div class="container mx-auto px-6">
         <div class="text-center mb-16">
@@ -64,6 +69,7 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Card 1 -->
             <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition duration-300 text-center group">
                 <div class="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-6 text-hmti-primary group-hover:bg-hmti-primary group-hover:text-white transition">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -74,6 +80,7 @@
                 <p class="text-gray-600">Mengembangkan hard skill mahasiswa dalam rekayasa perangkat lunak, jaringan, dan kecerdasan buatan.</p>
             </div>
 
+            <!-- Card 2 -->
             <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition duration-300 text-center group">
                 <div class="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-6 text-hmti-marine group-hover:bg-hmti-marine group-hover:text-white transition">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -84,6 +91,7 @@
                 <p class="text-gray-600">Menerapkan teknologi informasi untuk memecahkan masalah di sektor kelautan dan kemaritiman.</p>
             </div>
 
+            <!-- Card 3 -->
             <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition duration-300 text-center group">
                 <div class="w-16 h-16 mx-auto bg-yellow-100 rounded-full flex items-center justify-center mb-6 text-yellow-600 group-hover:bg-hmti-accent group-hover:text-hmti-dark transition">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -97,6 +105,7 @@
     </div>
 </section>
 
+<!-- BERITA TERBARU -->
 <section class="py-20 bg-gray-50">
     <div class="container mx-auto px-6">
         <div class="flex justify-between items-end mb-12">
@@ -154,6 +163,7 @@
     </div>
 </section>
 
+<!-- CUSTOM CSS UNTUK AURORA WAVE -->
 <style>
     @keyframes bounce-slow {
         0%, 100% { transform: translateY(-5%); }
@@ -161,6 +171,27 @@
     }
     .animate-bounce-slow {
         animation: bounce-slow 3s infinite ease-in-out;
+    }
+
+    .animated-gradient {
+        /* Gradient 4 warna dengan sudut -45 derajat (diagonal).
+            Urutan warna: Hijau Tua, Hijau Terang, Biru Laut, Kembali ke Hijau Tua
+        */
+        background: linear-gradient(-45deg, #14532d, #16a34a, #1e40af, #14532d);
+        background-size: 400% 400%;
+        animation: gradient-wave 15s ease infinite;
+    }
+
+    @keyframes gradient-wave {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
     }
 </style>
 

@@ -6,7 +6,7 @@
 <section class="bg-hmti-marine py-20 text-center text-white relative overflow-hidden">
     <div class="absolute top-0 left-0 w-full h-full bg-white opacity-5"></div>
     <div class="container mx-auto px-6 relative z-10">
-        <h1 class="text-4xl font-bold mb-4">Kabar Informatika</h1>
+        <h1 class="text-4xl font-bold mb-4 mt-9">Kabar Informatika</h1>
         <p class="text-blue-100 text-lg max-w-2xl mx-auto">
             Update terbaru seputar kegiatan kemahasiswaan, prestasi, dan teknologi informasi di lingkungan UMRAH.
         </p>

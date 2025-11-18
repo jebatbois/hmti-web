@@ -24,6 +24,7 @@
 
     <div class="flex h-screen overflow-hidden">
         
+        <!-- SIDEBAR -->
         <aside class="w-64 bg-gray-900 text-white flex flex-col shadow-xl">
             <div class="h-16 flex items-center justify-center border-b border-gray-700 bg-gray-800">
                 <span class="text-xl font-bold tracking-wider text-hmti-primary">ADMIN HMTI</span>
@@ -31,25 +32,28 @@
 
             <nav class="flex-1 px-2 py-4 space-y-2 overflow-y-auto">
                 
+                <!-- 1. Dashboard -->
                 <a href="/admin/dashboard" class="flex items-center px-4 py-3 rounded-lg transition-colors <?= ($title == 'Dashboard') ? 'bg-hmti-primary text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white' ?>">
                     <i class="fas fa-tachometer-alt w-6"></i>
                     <span class="font-medium">Dashboard</span>
                 </a>
 
+                <!-- LABEL MANAJEMEN DATA -->
                 <p class="px-4 text-xs font-semibold text-gray-500 uppercase mt-4 mb-2">Manajemen Data</p>
 
-                <!-- Menu Program Kerja (DITAMBAHKAN) -->
+                <!-- 2. Program Kerja -->
                 <a href="/admin/proker" class="flex items-center px-4 py-3 rounded-lg transition-colors <?= (strpos($title, 'Program') !== false) ? 'bg-hmti-primary text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white' ?>">
                     <i class="fas fa-tasks w-6"></i>
                     <span class="font-medium">Program Kerja</span>
                 </a>
 
+                <!-- 3. Berita -->
                 <a href="/admin/berita" class="flex items-center px-4 py-3 rounded-lg transition-colors <?= (strpos($title, 'Berita') !== false) ? 'bg-hmti-primary text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white' ?>">
                     <i class="fas fa-newspaper w-6"></i>
                     <span class="font-medium">Berita & Artikel</span>
                 </a>
 
-                <!-- Menu Admin Only -->
+                <!-- 4. Pengurus & User (HANYA ADMIN) -->
                 <?php if(session()->get('role') == 'admin') : ?>
                     
                     <a href="/admin/pengurus" class="flex items-center px-4 py-3 rounded-lg transition-colors <?= (strpos($title, 'Pengurus') !== false) ? 'bg-hmti-primary text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white' ?>">
@@ -64,8 +68,24 @@
 
                 <?php endif; ?>
 
+                <!-- LABEL INTERAKSI (BARU) -->
+                <p class="px-4 text-xs font-semibold text-gray-500 uppercase mt-4 mb-2">Interaksi</p>
+
+                <!-- 5. Kotak Masuk Pesan -->
+                <a href="/admin/pesan" class="flex items-center px-4 py-3 rounded-lg transition-colors <?= (strpos($title, 'Pesan') !== false) ? 'bg-hmti-primary text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white' ?>">
+                    <i class="fas fa-envelope-open-text w-6"></i>
+                    <span class="font-medium">Kotak Masuk</span>
+                </a>
+
+                <!-- 6. Moderasi Mimbar -->
+                <a href="/admin/mimbar" class="flex items-center px-4 py-3 rounded-lg transition-colors <?= (strpos($title, 'Mimbar') !== false) ? 'bg-hmti-primary text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white' ?>">
+                    <i class="fas fa-comments w-6"></i>
+                    <span class="font-medium">Moderasi Mimbar</span>
+                </a>
+
             </nav>
 
+            <!-- Logout -->
             <div class="p-4 border-t border-gray-800">
                 <a href="/logout" class="flex items-center px-4 py-2 text-red-400 hover:bg-red-900/20 rounded-lg transition">
                     <i class="fas fa-sign-out-alt w-6"></i>
@@ -74,6 +94,7 @@
             </div>
         </aside>
 
+        <!-- KONTEN UTAMA -->
         <div class="flex-1 flex flex-col overflow-hidden">
             <header class="h-16 bg-white shadow flex items-center justify-between px-6">
                 <h2 class="text-xl font-bold text-gray-800"><?= $title; ?></h2>

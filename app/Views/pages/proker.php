@@ -5,7 +5,7 @@
 <!-- Header -->
 <section class="bg-hmti-light py-20 text-center">
     <div class="container mx-auto px-6">
-        <h1 class="text-3xl md:text-4xl font-extrabold text-hmti-dark mb-4">Program Kerja HMTI</h1>
+        <h1 class="text-3xl md:text-4xl font-extrabold text-hmti-dark mb-4 mt-9">Program Kerja HMTI</h1>
         <p class="text-gray-600 text-lg max-w-2xl mx-auto">
             Agenda kegiatan dan program kerja Himpunan Mahasiswa Teknik Informatika periode ini.
         </p>

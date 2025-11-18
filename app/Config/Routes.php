@@ -41,6 +41,12 @@ $routes->group('admin', ['filter' => 'auth'], function($routes) {
     $routes->post('proker/update/(:num)', 'Admin\ProkerController::update/$1');
     $routes->post('proker/delete/(:num)', 'Admin\ProkerController::delete/$1');
 
+    // CRUD INTERAKSI
+    $routes->get('pesan', 'Admin\InteraksiController::pesan');
+    $routes->post('pesan/delete/(:num)', 'Admin\InteraksiController::deletePesan/$1');
+    $routes->get('mimbar', 'Admin\InteraksiController::mimbar');
+    $routes->post('mimbar/delete/(:num)', 'Admin\InteraksiController::deleteMimbar/$1');
+
     // Manajemen User
     $routes->get('users', 'Admin\UserController::index');
     $routes->get('users/create', 'Admin\UserController::create');
@@ -52,8 +58,20 @@ $routes->group('admin', ['filter' => 'auth'], function($routes) {
 
 // Route Publik
 $routes->get('/', 'Home::index');
+
+// Profil
 $routes->get('/profil', 'Profil::index');
+
+// Berita
 $routes->get('/berita', 'Berita::index');
 $routes->get('/berita/(:segment)', 'Berita::detail/$1');
+
+// Proker
 $routes->get('/proker', 'Proker::index');
 $routes->get('/proker/(:num)', 'Proker::detail/$1');
+
+// Kontak & Mimbar
+$routes->get('/kontak', 'Interaksi::kontak');
+$routes->post('/kontak/kirim', 'Interaksi::kirimKontak');
+$routes->get('/mimbar', 'Interaksi::mimbar');
+$routes->post('/mimbar/kirim', 'Interaksi::kirimMimbar');
