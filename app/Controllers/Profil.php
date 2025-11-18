@@ -11,19 +11,19 @@ class Profil extends BaseController
 
     public function __construct()
     {
-        // Load model di constructor agar bisa dipakai di semua fungsi
         $this->pengurusModel = new PengurusModel();
     }
 
     public function index()
     {
-        // Mengelompokkan data
         $data = [
-            'title' => 'Profil & Struktur Organisasi',
-            'bph'   => $this->pengurusModel->getByDivisi('BPH'),
-            'kominfo' => $this->pengurusModel->getByDivisi('Kominfo'),
-            // Bisa ambil semua juga:
-            // 'semua_pengurus' => $this->pengurusModel->findAll()
+            'title' => 'Struktur Organisasi HMTI',
+            // Ambil data per kelompok
+            'inti'    => $this->pengurusModel->getInti(),
+            'ppm'     => $this->pengurusModel->getDepartemen('Departemen PPM'),
+            'mti'     => $this->pengurusModel->getDepartemen('Departemen MTI'),
+            'litbang' => $this->pengurusModel->getDepartemen('Departemen Litbang'),
+            'kwu'     => $this->pengurusModel->getDepartemen('Departemen Kewirausahaan'),
         ];
 
         return view('pages/profil', $data);

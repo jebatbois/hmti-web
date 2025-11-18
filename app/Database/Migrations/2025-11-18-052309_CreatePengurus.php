@@ -20,12 +20,16 @@ class CreatePengurus extends Migration
                 'constraint' => '100',
             ],
             'jabatan' => [
-                'type'       => 'VARCHAR', // Contoh: Ketua Umum, Kadiv Kominfo
-                'constraint' => '100',
+                'type'       => 'VARCHAR', 
+                'constraint' => '100', // Contoh: Ketua Himpunan, Sekretaris Umum 1, Staff
             ],
-            'divisi' => [
-                'type'       => 'VARCHAR', // Contoh: Inti, Kominfo, Kaderisasi
-                'constraint' => '50',
+            'departemen' => [
+                'type'       => 'VARCHAR', 
+                'constraint' => '100', // Contoh: Pengurus Inti, Departemen MTI, Departemen PPM
+            ],
+            'sub_divisi' => [
+                'type'       => 'VARCHAR', 
+                'constraint' => '100', // Contoh: Divisi Kaderisasi, Divisi Multimedia (Bisa NULL untuk Inti)
                 'null'       => true,
             ],
             'angkatan' => [
@@ -34,7 +38,12 @@ class CreatePengurus extends Migration
             'foto' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
-                'default'    => 'default.jpg',
+                'default'    => 'default.png',
+            ],
+            'urutan' => [
+                'type'       => 'INT', 
+                'constraint' => 5, 
+                'default'    => 100, // Semakin kecil angkanya, semakin di atas posisinya
             ],
             'created_at' => ['type' => 'DATETIME', 'null' => true],
             'updated_at' => ['type' => 'DATETIME', 'null' => true],

@@ -6,3 +6,6 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'Home::index');
+$routes->get('/profil', 'Profil::index');
+$routes->get('/berita', 'Berita::index');
+$routes->get('/berita/(:segment)', 'Berita::detail/$1');
