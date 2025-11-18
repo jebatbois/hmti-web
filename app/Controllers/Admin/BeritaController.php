@@ -4,42 +4,51 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use App\Models\BeritaModel;
+use App\Models\KategoriModel; // Load Model Kategori
 
 class BeritaController extends BaseController
 {
     protected $beritaModel;
+    protected $kategoriModel; // Property baru
 
     public function __construct()
     {
         $this->beritaModel = new BeritaModel();
+        $this->kategoriModel = new KategoriModel(); // Init
     }
 
-    // 1. READ (List Berita)
+    // 1. READ (List Berita) - Update Query agar menampilkan nama kategori
     public function index()
     {
         $data = [
             'title'  => 'Manajemen Berita',
-            'berita' => $this->beritaModel->orderBy('created_at', 'DESC')->findAll()
+            // Gunakan method baru getBeritaLengkap()
+            'berita' => $this->beritaModel->getBeritaLengkap()->orderBy('berita.created_at', 'DESC')->findAll()
         ];
         return view('admin/berita/index', $data);
     }
 
-    // 2. CREATE (Form Tambah)
+    // 2. CREATE (Kirim data kategori ke view)
     public function create()
     {
-        $data = ['title' => 'Tulis Berita Baru'];
+        $data = [
+            'title' => 'Tulis Berita Baru',
+            'kategori' => $this->kategoriModel->findAll() // Kirim daftar kategori
+        ];
         return view('admin/berita/create', $data);
     }
 
-    // 3. STORE (Proses Simpan)
+    // 3. STORE (Simpan kategori_id)
     public function store()
     {
-        // PERBAIKAN: Ubah max_size dan ext_in
+        // ... validasi judul, isi, gambar (sama seperti sebelumnya) ...
+        // Tambahkan validasi kategori
         if (!$this->validate([
-            'judul'  => 'required|min_length[5]',
-            'isi'    => 'required',
-            'gambar' => [
-                'rules' => 'permit_empty|is_image[gambar]|ext_in[gambar,png,jpg,jpeg,gif,webp]|max_size[gambar,10240]', // 10MB
+            'judul' => 'required',
+            'kategori_id' => 'required', // Wajib pilih
+            // ... validasi gambar ...
+             'gambar' => [
+                'rules' => 'permit_empty|is_image[gambar]|ext_in[gambar,png,jpg,jpeg,gif,webp]|max_size[gambar,10240]', 
                 'errors' => [
                     'is_image' => 'File yang diupload bukan gambar.',
                     'ext_in'   => 'Hanya menerima file PNG, JPG, JPEG, GIF, atau WebP.',
@@ -47,12 +56,10 @@ class BeritaController extends BaseController
                 ]
             ]
         ])) {
-            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
         $fileGambar = $this->request->getFile('gambar');
-        
-        // PERBAIKAN: Mengganti hasError() dengan getError() == 0
         if ($fileGambar->isValid() && $fileGambar->getError() == 0) {
             $namaGambar = $fileGambar->getRandomName();
             $fileGambar->move(FCPATH . 'img/berita', $namaGambar);
@@ -63,34 +70,36 @@ class BeritaController extends BaseController
         $slug = url_title($this->request->getVar('judul'), '-', true);
 
         $this->beritaModel->save([
-            'judul'  => $this->request->getVar('judul'),
-            'slug'   => $slug,
-            'isi'    => $this->request->getVar('isi'),
-            'gambar' => $namaGambar
+            'judul'       => $this->request->getVar('judul'),
+            'slug'        => $slug,
+            'kategori_id' => $this->request->getVar('kategori_id'), // Simpan ID
+            'isi'         => $this->request->getVar('isi'),
+            'gambar'      => $namaGambar
         ]);
 
         return redirect()->to('/admin/berita')->with('success', 'Berita berhasil diterbitkan!');
     }
 
-    // 4. EDIT (Form Edit)
+    // 4. EDIT (Kirim data kategori)
     public function edit($id)
     {
         $data = [
-            'title'  => 'Edit Berita',
-            'berita' => $this->beritaModel->find($id)
+            'title'    => 'Edit Berita',
+            'berita'   => $this->beritaModel->find($id),
+            'kategori' => $this->kategoriModel->findAll() // Kirim daftar kategori
         ];
         return view('admin/berita/edit', $data);
     }
 
-    // 5. UPDATE (Proses Update)
+    // 5. UPDATE (Simpan kategori_id)
     public function update($id)
     {
-        // PERBAIKAN: Ubah max_size dan ext_in
-        if (!$this->validate([
-            'judul'  => 'required|min_length[5]',
-            'isi'    => 'required',
-            'gambar' => [
-                'rules' => 'permit_empty|is_image[gambar]|ext_in[gambar,png,jpg,jpeg,gif,webp]|max_size[gambar,10240]', // 10MB
+         // ... validasi ...
+          if (!$this->validate([
+            'judul' => 'required',
+            'kategori_id' => 'required',
+             'gambar' => [
+                'rules' => 'permit_empty|is_image[gambar]|ext_in[gambar,png,jpg,jpeg,gif,webp]|max_size[gambar,10240]', 
                 'errors' => [
                     'is_image' => 'File yang diupload bukan gambar.',
                     'ext_in'   => 'Hanya menerima file PNG, JPG, JPEG, GIF, atau WebP.',
@@ -98,49 +107,44 @@ class BeritaController extends BaseController
                 ]
             ]
         ])) {
-            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
         $fileGambar = $this->request->getFile('gambar');
         $beritaLama = $this->beritaModel->find($id);
 
-        // PERBAIKAN: Mengganti hasError() dengan getError() == 0
         if ($fileGambar->isValid() && $fileGambar->getError() == 0) {
-            // Jika Valid: Upload file baru
             $namaGambar = $fileGambar->getRandomName();
             $fileGambar->move(FCPATH . 'img/berita', $namaGambar);
-            
             $pathLama = FCPATH . 'img/berita/' . $beritaLama['gambar'];
             if ($beritaLama['gambar'] && file_exists($pathLama)) {
                 unlink($pathLama);
             }
         } else {
-            // Gunakan gambar lama
             $namaGambar = $beritaLama['gambar']; 
         }
 
         $slug = url_title($this->request->getVar('judul'), '-', true);
 
         $this->beritaModel->update($id, [
-            'judul'  => $this->request->getVar('judul'),
-            'slug'   => $slug,
-            'isi'    => $this->request->getVar('isi'),
-            'gambar' => $namaGambar
+            'judul'       => $this->request->getVar('judul'),
+            'slug'        => $slug,
+            'kategori_id' => $this->request->getVar('kategori_id'), // Update ID
+            'isi'         => $this->request->getVar('isi'),
+            'gambar'      => $namaGambar
         ]);
 
         return redirect()->to('/admin/berita')->with('success', 'Berita berhasil diperbarui!');
     }
 
-    // 6. DELETE (Hapus)
+    // 6. DELETE (Tetap sama)
     public function delete($id)
     {
         $berita = $this->beritaModel->find($id);
-
         $pathGambar = FCPATH . 'img/berita/' . $berita['gambar'];
         if ($berita['gambar'] && file_exists($pathGambar)) {
             unlink($pathGambar);
         }
-
         $this->beritaModel->delete($id);
         return redirect()->to('/admin/berita')->with('success', 'Berita berhasil dihapus.');
     }

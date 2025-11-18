@@ -14,18 +14,15 @@ class Berita extends BaseController
         $this->beritaModel = new BeritaModel();
     }
 
-    // Halaman List Berita + Pencarian
     public function index()
     {
-        // 1. Ambil keyword dari URL (?keyword=...)
         $keyword = $this->request->getGet('keyword');
+        
+        // PENTING: Gunakan getBeritaLengkap() agar dapat nama & warna kategori
+        $query = $this->beritaModel->getBeritaLengkap(); 
 
-        // 2. Bangun Query
-        // Kita manipulasi $this->beritaModel langsung sebelum memanggil paginate
         if ($keyword) {
-            // Menggunakan groupStart() agar logika OR terisolasi dengan benar
-            // SQL: WHERE (judul LIKE '%key%' OR isi LIKE '%key%')
-            $this->beritaModel->groupStart()
+            $query->groupStart()
                 ->like('judul', $keyword)
                 ->orLike('isi', $keyword)
             ->groupEnd();
@@ -33,8 +30,7 @@ class Berita extends BaseController
 
         $data = [
             'title'   => 'Berita & Kegiatan - HMTI FT-TM',
-            // 3. Eksekusi query (filter di atas otomatis ikut tereksekusi di sini)
-            'berita'  => $this->beritaModel->orderBy('created_at', 'DESC')->paginate(6, 'berita'),
+            'berita'  => $query->orderBy('berita.created_at', 'DESC')->paginate(6, 'berita'),
             'pager'   => $this->beritaModel->pager,
             'keyword' => $keyword 
         ];
@@ -42,20 +38,25 @@ class Berita extends BaseController
         return view('pages/berita_index', $data);
     }
 
-    // Halaman Detail Berita (Tidak berubah)
     public function detail($slug)
     {
-        // ... (kode detail biarkan tetap sama)
-        $berita = $this->beritaModel->where('slug', $slug)->first();
+        // PENTING: Gunakan getBeritaLengkap() di sini juga
+        $berita = $this->beritaModel->getBeritaLengkap()->where('slug', $slug)->first();
 
         if (!$berita) {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
 
+        // Ambil berita terkait, juga dengan kategori lengkap
+        $terkait = $this->beritaModel->getBeritaLengkap()
+                        ->where('berita.id !=', $berita['id']) // Pastikan specify table 'berita.id'
+                        ->orderBy('berita.created_at', 'DESC')
+                        ->findAll(3);
+
         $data = [
             'title'   => $berita['judul'],
             'berita'  => $berita,
-            'terkait' => $this->beritaModel->where('id !=', $berita['id'])->orderBy('created_at', 'DESC')->findAll(3)
+            'terkait' => $terkait
         ];
 
         return view('pages/berita_detail', $data);

@@ -18,9 +18,15 @@
     <div class="flex flex-col lg:flex-row gap-12">
         
         <div class="w-full lg:w-2/3">
+            <!-- LABEL KATEGORI DI ATAS JUDUL -->
+            <span class="<?= $berita['warna_label'] ?? 'bg-gray-500'; ?> text-white text-xs font-bold px-3 py-1 rounded uppercase tracking-wide mb-3 inline-block">
+                <?= $berita['nama_kategori'] ?? 'Umum'; ?>
+            </span>
+
             <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4 leading-tight">
                 <?= $berita['judul']; ?>
             </h1>
+            
             <div class="flex items-center text-gray-500 text-sm mb-8 space-x-4">
                 <span class="flex items-center">
                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
@@ -28,7 +34,7 @@
                 </span>
                 <span class="flex items-center text-hmti-primary font-semibold">
                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path></svg>
-                    Berita HMTI
+                    Admin HMTI
                 </span>
             </div>
 
@@ -63,6 +69,10 @@
                                  class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
                         </a>
                         <div>
+                            <!-- Label Kecil di Sidebar -->
+                            <span class="<?= $t['warna_label'] ?? 'bg-gray-400'; ?> text-white text-[9px] px-1.5 py-0.5 rounded font-bold uppercase mb-1 inline-block">
+                                <?= $t['nama_kategori'] ?? 'Umum'; ?>
+                            </span>
                             <h4 class="text-sm font-bold text-gray-800 leading-snug mb-1 group-hover:text-hmti-primary transition">
                                 <a href="/berita/<?= $t['slug']; ?>"><?= $t['judul']; ?></a>
                             </h4>
