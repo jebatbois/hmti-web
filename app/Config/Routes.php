@@ -17,6 +17,14 @@ $routes->group('admin', ['filter' => 'auth'], function($routes) {
     $routes->get('dashboard', 'Admin\Dashboard::index');
     $routes->get('/', 'Admin\Dashboard::index');
 
+    // Manajemen Berita
+    $routes->get('berita', 'Admin\BeritaController::index');
+    $routes->get('berita/create', 'Admin\BeritaController::create');
+    $routes->post('berita/store', 'Admin\BeritaController::store');
+    $routes->get('berita/edit/(:num)', 'Admin\BeritaController::edit/$1');
+    $routes->post('berita/update/(:num)', 'Admin\BeritaController::update/$1');
+    $routes->post('berita/delete/(:num)', 'Admin\BeritaController::delete/$1');
+
     // Manajemen User
     $routes->get('users', 'Admin\UserController::index');
     $routes->get('users/create', 'Admin\UserController::create');
