@@ -17,9 +17,8 @@
 <div class="container mx-auto px-6 py-12">
     <div class="flex flex-col lg:flex-row gap-12">
         
-        <div class="w-full lg:w-2/3">
-            <!-- LABEL KATEGORI DI ATAS JUDUL -->
-            <span class="<?= $berita['warna_label'] ?? 'bg-gray-500'; ?> text-white text-xs font-bold px-3 py-1 rounded uppercase tracking-wide mb-3 inline-block">
+        <!-- KONTEN UTAMA (Kiri) --><div class="w-full lg:w-2/3">
+            <!-- Label Kategori --><span class="<?= $berita['warna_label'] ?? 'bg-gray-500'; ?> text-white text-xs font-bold px-3 py-1 rounded uppercase tracking-wide mb-3 inline-block">
                 <?= $berita['nama_kategori'] ?? 'Umum'; ?>
             </span>
 
@@ -44,18 +43,77 @@
                      class="w-full h-auto object-cover">
             </div>
 
-            <div class="prose prose-lg text-gray-700 max-w-none leading-relaxed text-justify">
+            <div class="prose prose-lg text-gray-700 max-w-none leading-relaxed text-justify mb-12">
                 <?= nl2br($berita['isi']); ?>
             </div>
 
-            <div class="mt-12 pt-8 border-t">
+            <!-- SECTION KOMENTAR --><div id="komentar" class="border-t pt-10 mt-10">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6">
+                    Komentar <span class="text-hmti-primary">(<?= $jumlah_komentar; ?>)</span>
+                </h3>
+
+                <!-- Form Kirim Komentar --><div class="bg-gray-50 p-6 rounded-xl mb-10 border border-gray-200">
+                    <h4 class="text-lg font-bold mb-4">Tinggalkan Jejak</h4>
+                    
+                    <?php if(session()->getFlashdata('success')) : ?>
+                        <div class="bg-green-100 text-green-700 p-3 rounded mb-4 text-sm"><?= session()->getFlashdata('success'); ?></div>
+                    <?php endif; ?>
+
+                    <form action="/berita/kirim_komentar" method="post">
+                        <input type="hidden" name="berita_id" value="<?= $berita['id']; ?>">
+                        <input type="hidden" name="slug" value="<?= $berita['slug']; ?>">
+
+                        <!-- INPUT NAMA (Full Width karena Email dihapus) --><div class="mb-4">
+                            <input type="text" name="nama" class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:border-hmti-primary" placeholder="Nama Lengkap / Samaran" required>
+                        </div>
+                        
+                        <!-- TEXTAREA --><div class="mb-4">
+                            <textarea name="isi_komentar" class="w-full px-4 py-3 border rounded-lg h-24 focus:outline-none focus:border-hmti-primary" placeholder="Tulis komentar Anda di sini..." required></textarea>
+                        </div>
+                        <button type="submit" class="bg-hmti-primary text-white px-6 py-2 rounded-lg font-bold hover:bg-hmti-dark transition">
+                            Kirim Komentar
+                        </button>
+                    </form>
+                </div>
+
+                <!-- List Komentar --><div class="space-y-6">
+                    <?php if(empty($komentar)): ?>
+                        <p class="text-gray-500 italic">Belum ada komentar. Jadilah yang pertama!</p>
+                    <?php else: ?>
+                        <?php foreach($komentar as $k): ?>
+                            <div class="flex gap-4">
+                                <!-- HAPUS BLOK DIV INI UNTUK MENGHILANGKAN AVATAR --><!--
+                                <div class="flex-shrink-0">
+                                    <img src="https://ui-avatars.com/api/?name=<?= urlencode($k['nama']); ?>&background=random&color=fff" 
+                                         class="w-12 h-12 rounded-full border-2 border-white shadow-sm">
+                                </div>
+                                --><!-- GANTI DENGAN INI (JIKA INGIN INISIAL NAMA SAJA) --><div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold text-lg shadow-sm border-2 border-white">
+                                    <?= strtoupper(substr($k['nama'], 0, 1)); ?>
+                                </div>
+
+
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <h5 class="font-bold text-gray-800"><?= esc($k['nama']); ?></h5>
+                                        <span class="text-xs text-gray-400">• <?= date('d M Y, H:i', strtotime($k['created_at'])); ?></span>
+                                    </div>
+                                    <p class="text-gray-700 text-sm leading-relaxed bg-gray-50 p-3 rounded-lg rounded-tl-none border border-gray-100">
+                                        <?= nl2br(esc($k['isi_komentar'])); ?>
+                                    </p>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </div>
+            </div>
+            <!-- END SECTION KOMENTAR --><div class="mt-12 pt-8 border-t">
                 <a href="/berita" class="inline-flex items-center text-hmti-marine font-bold hover:text-hmti-dark transition">
                     &larr; Kembali ke Daftar Berita
                 </a>
             </div>
         </div>
 
-        <div class="w-full lg:w-1/3">
+        <!-- SIDEBAR (Kanan) --><div class="w-full lg:w-1/3">
             <div class="bg-white p-6 rounded-xl shadow border border-gray-100 sticky top-24">
                 <h3 class="text-xl font-bold text-gray-800 mb-4 border-b pb-2 border-hmti-accent">
                     Berita Lainnya
@@ -69,7 +127,6 @@
                                  class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
                         </a>
                         <div>
-                            <!-- Label Kecil di Sidebar -->
                             <span class="<?= $t['warna_label'] ?? 'bg-gray-400'; ?> text-white text-[9px] px-1.5 py-0.5 rounded font-bold uppercase mb-1 inline-block">
                                 <?= $t['nama_kategori'] ?? 'Umum'; ?>
                             </span>

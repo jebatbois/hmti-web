@@ -29,7 +29,6 @@ class PengurusController extends BaseController
 
         $data = [
             'title'    => 'Manajemen Pengurus',
-            // Urutkan berdasarkan field 'urutan' biar rapi sesuai hierarki
             'pengurus' => $this->pengurusModel->orderBy('urutan', 'ASC')->findAll()
         ];
         return view('admin/pengurus/index', $data);
@@ -67,12 +66,12 @@ class PengurusController extends BaseController
 
         $fileFoto = $this->request->getFile('foto');
         
-        // Upload Foto
-        if ($fileFoto->isValid() && !$fileFoto->hasError()) {
+        // PERBAIKAN: Ganti hasError() dengan getError() == 0
+        if ($fileFoto->isValid() && $fileFoto->getError() == 0) {
             $namaFoto = $fileFoto->getRandomName();
             $fileFoto->move(FCPATH . 'img/pengurus', $namaFoto);
         } else {
-            $namaFoto = 'default.png'; // Nama file default jika tidak upload
+            $namaFoto = 'default.png'; 
         }
 
         $this->pengurusModel->save([
@@ -115,8 +114,8 @@ class PengurusController extends BaseController
         $fileFoto = $this->request->getFile('foto');
         $dataLama = $this->pengurusModel->find($id);
 
-        // Cek Upload Foto Baru
-        if ($fileFoto->isValid() && !$fileFoto->hasError()) {
+        // PERBAIKAN: Ganti hasError() dengan getError() == 0
+        if ($fileFoto->isValid() && $fileFoto->getError() == 0) {
             $namaFoto = $fileFoto->getRandomName();
             $fileFoto->move(FCPATH . 'img/pengurus', $namaFoto);
 

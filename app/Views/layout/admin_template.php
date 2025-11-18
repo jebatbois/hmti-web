@@ -68,7 +68,7 @@
 
                 <?php endif; ?>
 
-                <!-- LABEL INTERAKSI (BARU) -->
+                <!-- LABEL INTERAKSI -->
                 <p class="px-4 text-xs font-semibold text-gray-500 uppercase mt-4 mb-2">Interaksi</p>
 
                 <!-- 5. Kotak Masuk Pesan -->
@@ -81,6 +81,12 @@
                 <a href="/admin/mimbar" class="flex items-center px-4 py-3 rounded-lg transition-colors <?= (strpos($title, 'Mimbar') !== false) ? 'bg-hmti-primary text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white' ?>">
                     <i class="fas fa-comments w-6"></i>
                     <span class="font-medium">Moderasi Mimbar</span>
+                </a>
+
+                <!-- 7. Moderasi Komentar (BARU) -->
+                <a href="/admin/komentar" class="flex items-center px-4 py-3 rounded-lg transition-colors <?= (strpos($title, 'Komentar') !== false) ? 'bg-hmti-primary text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white' ?>">
+                    <i class="fas fa-comment-dots w-6"></i>
+                    <span class="font-medium">Komentar Berita</span>
                 </a>
 
             </nav>
