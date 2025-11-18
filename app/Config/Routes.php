@@ -25,6 +25,14 @@ $routes->group('admin', ['filter' => 'auth'], function($routes) {
     $routes->post('berita/update/(:num)', 'Admin\BeritaController::update/$1');
     $routes->post('berita/delete/(:num)', 'Admin\BeritaController::delete/$1');
 
+    // CRUD PENGURUS (Hanya Admin yang bisa akses, Editor ditolak di Controller)
+    $routes->get('pengurus', 'Admin\PengurusController::index');
+    $routes->get('pengurus/create', 'Admin\PengurusController::create');
+    $routes->post('pengurus/store', 'Admin\PengurusController::store');
+    $routes->get('pengurus/edit/(:num)', 'Admin\PengurusController::edit/$1');
+    $routes->post('pengurus/update/(:num)', 'Admin\PengurusController::update/$1');
+    $routes->post('pengurus/delete/(:num)', 'Admin\PengurusController::delete/$1');
+
     // Manajemen User
     $routes->get('users', 'Admin\UserController::index');
     $routes->get('users/create', 'Admin\UserController::create');
