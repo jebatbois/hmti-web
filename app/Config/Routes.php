@@ -33,6 +33,14 @@ $routes->group('admin', ['filter' => 'auth'], function($routes) {
     $routes->post('pengurus/update/(:num)', 'Admin\PengurusController::update/$1');
     $routes->post('pengurus/delete/(:num)', 'Admin\PengurusController::delete/$1');
 
+    // CRUD PROKER
+    $routes->get('proker', 'Admin\ProkerController::index');
+    $routes->get('proker/create', 'Admin\ProkerController::create');
+    $routes->post('proker/store', 'Admin\ProkerController::store');
+    $routes->get('proker/edit/(:num)', 'Admin\ProkerController::edit/$1');
+    $routes->post('proker/update/(:num)', 'Admin\ProkerController::update/$1');
+    $routes->post('proker/delete/(:num)', 'Admin\ProkerController::delete/$1');
+
     // Manajemen User
     $routes->get('users', 'Admin\UserController::index');
     $routes->get('users/create', 'Admin\UserController::create');
@@ -47,3 +55,5 @@ $routes->get('/', 'Home::index');
 $routes->get('/profil', 'Profil::index');
 $routes->get('/berita', 'Berita::index');
 $routes->get('/berita/(:segment)', 'Berita::detail/$1');
+$routes->get('/proker', 'Proker::index');
+$routes->get('/proker/(:num)', 'Proker::detail/$1');

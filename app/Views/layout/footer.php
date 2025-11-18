@@ -3,7 +3,7 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
             <div>
                 <h3 class="text-2xl font-bold mb-4 flex items-center">
-                    HMTI UMRAH
+                    HMTI FTTK
                 </h3>
                 <p class="text-gray-300 text-sm leading-relaxed">
                     Himpunan Mahasiswa Teknik Informatika<br>
@@ -17,13 +17,13 @@
                 <ul class="space-y-2 text-sm">
                     <li><a href="/profil" class="hover:text-hmti-accent transition">Struktur Organisasi</a></li>
                     <li><a href="/berita" class="hover:text-hmti-accent transition">Berita & Kegiatan</a></li>
-                    <li><a href="#" class="hover:text-hmti-accent transition">Program Kerja</a></li>
+                    <li><a href="/proker" class="hover:text-hmti-accent transition">Program Kerja</a></li>
                 </ul>
             </div>
 
             <div>
                 <h4 class="text-lg font-bold text-hmti-accent mb-4">Hubungi Kami</h4>
-                <p class="text-gray-300 text-sm mb-2">Gedung F Teknik, Senggarang</p>
+                <p class="text-gray-300 text-sm mb-2">Gedung FTTK, Ruang HMTI, Senggarang</p>
                 <p class="text-gray-300 text-sm">Email: hmti@umrah.ac.id</p>
             </div>
         </div>

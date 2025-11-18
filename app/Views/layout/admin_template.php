@@ -38,11 +38,18 @@
 
                 <p class="px-4 text-xs font-semibold text-gray-500 uppercase mt-4 mb-2">Manajemen Data</p>
 
+                <!-- Menu Program Kerja (DITAMBAHKAN) -->
+                <a href="/admin/proker" class="flex items-center px-4 py-3 rounded-lg transition-colors <?= (strpos($title, 'Program') !== false) ? 'bg-hmti-primary text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white' ?>">
+                    <i class="fas fa-tasks w-6"></i>
+                    <span class="font-medium">Program Kerja</span>
+                </a>
+
                 <a href="/admin/berita" class="flex items-center px-4 py-3 rounded-lg transition-colors <?= (strpos($title, 'Berita') !== false) ? 'bg-hmti-primary text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white' ?>">
                     <i class="fas fa-newspaper w-6"></i>
                     <span class="font-medium">Berita & Artikel</span>
                 </a>
 
+                <!-- Menu Admin Only -->
                 <?php if(session()->get('role') == 'admin') : ?>
                     
                     <a href="/admin/pengurus" class="flex items-center px-4 py-3 rounded-lg transition-colors <?= (strpos($title, 'Pengurus') !== false) ? 'bg-hmti-primary text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white' ?>">
@@ -56,8 +63,8 @@
                     </a>
 
                 <?php endif; ?>
-                
-                </nav>
+
+            </nav>
 
             <div class="p-4 border-t border-gray-800">
                 <a href="/logout" class="flex items-center px-4 py-2 text-red-400 hover:bg-red-900/20 rounded-lg transition">
@@ -68,7 +75,6 @@
         </aside>
 
         <div class="flex-1 flex flex-col overflow-hidden">
-            
             <header class="h-16 bg-white shadow flex items-center justify-between px-6">
                 <h2 class="text-xl font-bold text-gray-800"><?= $title; ?></h2>
                 
@@ -81,7 +87,6 @@
                             <?= session()->get('role'); ?>
                         </div>
                     </div>
-
                     <div class="h-10 w-10 rounded-full bg-hmti-primary text-white flex items-center justify-center font-bold text-lg shadow-sm border-2 border-white">
                         <?= strtoupper(substr(session()->get('nama') ?? 'A', 0, 1)); ?>
                     </div>
