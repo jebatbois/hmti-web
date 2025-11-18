@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Pindahkan semua Custom CSS (Animasi, Font) ke sini 
+   agar lebih rapi dan terkompilasi dengan benar.
+*/
+@layer utilities {
+    /* Animasi Aurora Gradient */
+    .animated-gradient {
+        background: linear-gradient(-45deg, #14532d, #16a34a, #1e40af, #14532d);
+        background-size: 400% 400%;
+        animation: gradient-wave 15s ease infinite;
+    }
+
+    @keyframes gradient-wave {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    /* Animasi Bounce Logo */
+    @keyframes bounce-slow {
+        0%, 100% { transform: translateY(-5%); }
+        50% { transform: translateY(5%); }
+    }
+    .animate-bounce-slow {
+        animation: bounce-slow 3s infinite ease-in-out;
+    }
+
+    /* Font Mimbar */
+    .font-handwriting {
+        font-family: 'Patrick Hand', cursive;
+    }
+}

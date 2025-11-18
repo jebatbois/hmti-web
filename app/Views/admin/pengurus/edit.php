@@ -27,7 +27,7 @@
             <label class="block text-gray-700 font-bold mb-2">Departemen / Bagian</label>
             <select name="departemen" class="w-full px-3 py-2 border rounded bg-white">
                 <?php 
-                $depts = ['Pengurus Inti', 'Departemen PPM', 'Departemen MTI', 'Departemen Litbang', 'Departemen Kewirausahaan'];
+                $depts = ['Pengurus Inti', 'Departemen PPM', 'Departemen Minat & Bakat', 'Departemen MTI', 'Departemen Litbang', 'Departemen Kewirausahaan'];
                 foreach($depts as $d): 
                 ?>
                     <option value="<?= $d; ?>" <?= ($p['departemen'] == $d) ? 'selected' : ''; ?>><?= $d; ?></option>

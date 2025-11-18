@@ -31,6 +31,7 @@
             <label class="block text-gray-700 font-bold mb-2">Departemen / Bagian</label>
             <select name="departemen" class="w-full px-3 py-2 border rounded focus:outline-none focus:border-hmti-primary bg-white">
                 <option value="Pengurus Inti">Pengurus Inti</option>
+                <option value="Departemen Minat & Bakat">Departemen Minat & Bakat</option>
                 <option value="Departemen PPM">Departemen PPM (Pengembangan & Pengabdian)</option>
                 <option value="Departemen MTI">Departemen MTI (Media & TI)</option>
                 <option value="Departemen Litbang">Departemen Litbang</option>
