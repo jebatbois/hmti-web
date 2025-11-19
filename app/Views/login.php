@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Admin - HMTI</title>
+    <link href="/css/style.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
       <link rel="shortcut icon" type="image/jpeg" href="/img/hmti.png">
 </head>

@@ -9,39 +9,65 @@ class PengurusController extends BaseController
 {
     protected $pengurusModel;
     
-    // DATA STRUKTUR ORGANISASI (Updated)
+    // DATA STRUKTUR ORGANISASI (UPDATED)
     protected $struktur = [
         'Pengurus Inti' => [
             'base_urutan' => 0,
-            'jabatan' => ['Ketua Himpunan', 'Wakil Ketua', 'Sekretaris Umum 1', 'Sekretaris Umum 2', 'Bendahara Umum 1', 'Bendahara Umum 2'],
+            'jabatan' => [
+                'Ketua Himpunan', 
+                'Wakil Ketua', 
+                'Sekretaris Umum', 
+                'Sekretaris Umum 1', 
+                'Sekretaris Umum 2', 
+                'Bendahara Umum',
+                'Bendahara Umum 1',
+                'Bendahara Umum 2'
+            ],
             'sub_divisi' => []
         ],
-        'Departemen PPM' => [
-            'base_urutan' => 10, 
-            // Ubah Koordinator -> Kepala Departemen
-            'jabatan' => ['Kepala Departemen', 'Sekretaris Departemen', 'Staff Ahli', 'Staff'],
-            'sub_divisi' => ['Divisi Kaderisasi', 'Divisi Pengabdian Masyarakat', 'Divisi Hubungan Luar']
+        'Departemen PPM' => [ 
+            'base_urutan' => 10,
+            // GANTI Staff Ahli -> Kepala Divisi
+            'jabatan' => ['Kepala Departemen', 'Sekretaris Departemen', 'Kepala Divisi', 'Staff'],
+            'sub_divisi' => [
+                'Divisi Pengembangan SDM & Kaderisasi',
+                'Divisi Hubungan & Relasi',
+                'Divisi Sosial & Pengabdian',
+                'Divisi Edukasi & Kepemimpinan'
+            ]
         ],
-        'Departemen Minat & Bakat' => [
+        'Departemen Kominfo' => [ 
             'base_urutan' => 30,
-            'jabatan' => ['Kepala Departemen', 'Sekretaris Departemen', 'Staff Ahli', 'Staff'],
-            'sub_divisi' => ['Divisi Olahraga', 'Divisi Seni & Musik', 'Divisi E-Sport']
+            'jabatan' => ['Kepala Departemen', 'Sekretaris Departemen', 'Kepala Divisi', 'Staff'],
+            'sub_divisi' => [
+                'Divisi Pengembangan Sistem & Infrastruktur',
+                'Divisi Desain & Produksi Multimedia',
+                'Divisi Publikasi & Dokumentasi',
+                'Divisi Konten & Branding Digital'
+            ]
         ],
-        // Ubah MTI -> Kominfo
-        'Departemen Kominfo' => [
-            'base_urutan' => 50, 
-            'jabatan' => ['Kepala Departemen', 'Sekretaris Departemen', 'Staff Ahli', 'Staff'],
-            'sub_divisi' => ['Divisi Multimedia', 'Divisi Pemrograman', 'Divisi Jaringan']
-        ],
-        'Departemen Litbang' => [
-            'base_urutan' => 70,
-            'jabatan' => ['Kepala Departemen', 'Sekretaris Departemen', 'Staff Ahli', 'Staff'],
-            'sub_divisi' => ['Divisi Riset', 'Divisi Kompetisi']
+        'Departemen Litbang' => [ 
+            'base_urutan' => 50,
+            'jabatan' => ['Kepala Departemen', 'Sekretaris Departemen', 'Kepala Divisi', 'Staff'],
+            'sub_divisi' => [
+                'Divisi Pelatihan & Akademik',
+                'Divisi Riset & Inovasi',
+                'Divisi Kompetisi & Prestasi'
+            ]
         ],
         'Departemen Kewirausahaan' => [
+            'base_urutan' => 70,
+            'jabatan' => ['Kepala Departemen', 'Sekretaris Departemen', 'Kepala Divisi', 'Staff'],
+            'sub_divisi' => [
+                'Divisi Bisnis & Inovasi',
+            ]
+        ],
+        'Departemen Minat & Bakat' => [
             'base_urutan' => 90,
-            'jabatan' => ['Kepala Departemen', 'Sekretaris Departemen', 'Staff Ahli', 'Staff'],
-            'sub_divisi' => ['Divisi Usaha Dana', 'Divisi Merchandise']
+            'jabatan' => ['Kepala Departemen', 'Sekretaris Departemen', 'Kepala Divisi', 'Staff'],
+            'sub_divisi' => [
+                'Divisi Event & Kreativitas',
+            ]
         ],
     ];
 
@@ -91,7 +117,7 @@ class PengurusController extends BaseController
         }
 
         $fileFoto = $this->request->getFile('foto');
-        $namaFoto = ($fileFoto->isValid() && !$fileFoto->hasError()) ? $fileFoto->getRandomName() : 'default.png';
+        $namaFoto = ($fileFoto->isValid() && $fileFoto->getError() == 0) ? $fileFoto->getRandomName() : 'default.png';
         
         if ($namaFoto != 'default.png') $fileFoto->move(FCPATH . 'img/pengurus', $namaFoto);
 
@@ -135,7 +161,7 @@ class PengurusController extends BaseController
         $dataLama = $this->pengurusModel->find($id);
         $namaFoto = $dataLama['foto'];
 
-        if ($fileFoto->isValid() && !$fileFoto->hasError()) {
+        if ($fileFoto->isValid() && $fileFoto->getError() == 0) {
             $namaFoto = $fileFoto->getRandomName();
             $fileFoto->move(FCPATH . 'img/pengurus', $namaFoto);
             if ($dataLama['foto'] != 'default.png' && file_exists(FCPATH . 'img/pengurus/' . $dataLama['foto'])) {

@@ -103,17 +103,42 @@
 
             <div class="flex overflow-x-auto md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 pb-4 no-scrollbar snap-x snap-mandatory">
                 <?php foreach ($data_anggota as $p) : 
-                    // Update Logika: Cek kata 'Koordinator', 'Kepala', atau 'Kadep'
-                    $isLeader = (strpos($p['jabatan'], 'Koordinator') !== false) || 
-                                (strpos($p['jabatan'], 'Kepala') !== false) || 
-                                (strpos($p['jabatan'], 'Kadep') !== false);
-                ?>
-                <div class="snap-center flex-shrink-0 min-w-[70%] md:min-w-0 w-full bg-white rounded-lg shadow border border-gray-100 flex flex-col items-center p-5 text-center relative 
-                    <?= $isLeader ? 'bg-yellow-50 border-hmti-accent' : '' ?>">
+                    // LOGIKA WARNA & LABEL
+                    $jabatan = $p['jabatan'];
                     
-                    <?php if($isLeader): ?>
-                        <div class="absolute top-0 right-0 bg-hmti-accent text-hmti-dark text-[10px] font-bold px-2 py-1 rounded-bl-lg">
-                            KADEP
+                    // 1. Cek KADEP (Kepala Departemen / Koordinator)
+                    $isKadep = (strpos($jabatan, 'Koordinator') !== false) || 
+                               (strpos($jabatan, 'Kepala Departemen') !== false) || 
+                               (strpos($jabatan, 'Kadep') !== false);
+                    
+                    // 2. Cek KADIV (Kepala Divisi) - Pastikan BUKAN Kadep
+                    $isKadiv = !$isKadep && (strpos($jabatan, 'Kepala Divisi') !== false);
+
+                    // Tentukan Class CSS berdasarkan peran
+                    $cardClass = '';
+                    $badgeText = '';
+                    $badgeClass = '';
+                    $avatarBg = '#1e40af'; // Default Biru (Staff)
+
+                    if ($isKadep) {
+                        $cardClass = 'bg-yellow-50 border-hmti-accent'; // Kuning
+                        $badgeText = 'KADEP';
+                        $badgeClass = 'bg-hmti-accent text-hmti-dark';
+                        $avatarBg = '#facc15';
+                    } elseif ($isKadiv) {
+                        $cardClass = 'bg-purple-50 border-purple-300'; // Ungu Muda
+                        $badgeText = 'KADIV';
+                        $badgeClass = 'bg-purple-200 text-purple-800';
+                        $avatarBg = '#a855f7';
+                    }
+                ?>
+                
+                <div class="snap-center flex-shrink-0 min-w-[70%] md:min-w-0 w-full bg-white rounded-lg shadow border border-gray-100 flex flex-col items-center p-5 text-center relative 
+                    <?= $cardClass; ?>">
+                    
+                    <?php if($badgeText): ?>
+                        <div class="absolute top-0 right-0 text-[10px] font-bold px-2 py-1 rounded-bl-lg <?= $badgeClass; ?>">
+                            <?= $badgeText; ?>
                         </div>
                     <?php endif; ?>
 
@@ -121,7 +146,7 @@
                         <?php if(!empty($p['foto']) && $p['foto'] != 'default.png'): ?>
                             <img src="/img/pengurus/<?= $p['foto']; ?>" class="w-full h-full object-cover">
                         <?php else: ?>
-                             <div class="w-full h-full flex items-center justify-center text-white font-bold text-xl" style="background-color: <?= $isLeader ? '#facc15' : '#1e40af' ?>">
+                             <div class="w-full h-full flex items-center justify-center text-white font-bold text-xl" style="background-color: <?= $avatarBg; ?>">
                                 <?= strtoupper(substr($p['nama'], 0, 2)); ?>
                             </div>
                         <?php endif; ?>
@@ -147,10 +172,7 @@
     <!-- RENDER SEMUA DEPARTEMEN -->
     <?= renderDepartemen('Departemen PPM (Pengembangan & Pengabdian)', $ppm ?? []); ?>
     <?= renderDepartemen('Departemen Minat & Bakat', $minba ?? []); ?>
-    
-    <!-- Ganti MTI jadi KOMINFO -->
     <?= renderDepartemen('Departemen Kominfo (Media & TI)', $kominfo ?? []); ?>
-    
     <?= renderDepartemen('Departemen Litbang', $litbang ?? []); ?>
     <?= renderDepartemen('Departemen Kewirausahaan', $kwu ?? []); ?>
 

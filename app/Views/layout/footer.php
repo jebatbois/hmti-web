@@ -18,6 +18,8 @@
                     <li><a href="/profil" class="hover:text-hmti-accent transition">Struktur Organisasi</a></li>
                     <li><a href="/berita" class="hover:text-hmti-accent transition">Berita & Kegiatan</a></li>
                     <li><a href="/proker" class="hover:text-hmti-accent transition">Program Kerja</a></li>
+                    <li><a href="/mimbar" class="hover:text-hmti-accent transition">Mimbar Aspirasi</a></li>
+                    <li><a href="/kontak" class="hover:text-hmti-accent transition">Kontak</a></li>
                 </ul>
             </div>
 

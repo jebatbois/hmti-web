@@ -114,8 +114,8 @@
         
         let tambahan = 9; 
 
-        // Update Logika Urutan untuk 'Kepala'
-        if (jabatan.includes('Ketua') || jabatan.includes('Koordinator') || jabatan.includes('Kepala')) {
+        // Update Logika Urutan yang Lebih Spesifik
+        if (jabatan === 'Kepala Departemen' || jabatan.includes('Ketua') || jabatan.includes('Koordinator')) {
             tambahan = 1;
         } else if (jabatan.includes('Wakil')) {
             tambahan = 2;
@@ -123,8 +123,10 @@
             tambahan = 3;
         } else if (jabatan.includes('Bendahara')) {
             tambahan = 4;
+        } else if (jabatan.includes('Kepala Divisi')) { 
+            tambahan = 5; // Urutan untuk Kepala Divisi
         } else if (jabatan.includes('Ahli')) {
-            tambahan = 5;
+            tambahan = 6;
         }
 
         urutanInput.value = parseInt(baseUrutan) + tambahan;

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $title ?? 'HMTI FT-TM'; ?></title>
+    <title><?= $title ?? 'HMTI FTTK'; ?></title>
     
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/jpeg" href="/img/hmti.jpg">
