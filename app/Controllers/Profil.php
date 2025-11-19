@@ -19,10 +19,10 @@ class Profil extends BaseController
         $data = [
             'title'   => 'Struktur Organisasi HMTI',
             'inti'    => $this->pengurusModel->getInti(),
-            // Ambil data per departemen
+            
             'ppm'     => $this->pengurusModel->getDepartemen('Departemen PPM'),
-            'minba'   => $this->pengurusModel->getDepartemen('Departemen Minat & Bakat'), // <--- DEPARTEMEN BARU
-            'kominfo'     => $this->pengurusModel->getDepartemen('Departemen Kominfo'),
+            'minba'   => $this->pengurusModel->getDepartemen('Departemen Minat & Bakat'),
+            'kominfo' => $this->pengurusModel->getDepartemen('Departemen Kominfo'), 
             'litbang' => $this->pengurusModel->getDepartemen('Departemen Litbang'),
             'kwu'     => $this->pengurusModel->getDepartemen('Departemen Kewirausahaan'),
         ];

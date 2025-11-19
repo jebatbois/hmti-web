@@ -2,14 +2,9 @@
 
 <?= $this->section('content'); ?>
 
-<!-- 
-    PERUBAHAN: 
-    Saya menghapus class gradient bawaan Tailwind (bg-gradient-to-br...) 
-    dan menggantinya sepenuhnya dengan class custom 'animated-gradient' 
-    agar kita bisa mengatur arah 'gelombang' via CSS.
--->
+<!-- HERO SECTION (SUDAH DIPERBAIKI SEBELUMNYA) -->
 <section class="relative text-white overflow-hidden animated-gradient">
-    
+    <!-- ... (kode hero sama seperti sebelumnya) ... -->
     <!-- Background Decoration -->
     <div class="absolute top-0 left-0 w-64 h-64 bg-white opacity-5 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl"></div>
     <div class="absolute bottom-0 right-0 w-96 h-96 bg-hmti-accent opacity-10 rounded-full translate-x-1/3 translate-y-1/3 blur-3xl"></div>
@@ -52,7 +47,6 @@
         </div>
     </div>
     
-    <!-- Gelombang Bawah (Wave SVG) -->
     <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
         <svg class="relative block w-[calc(100%+1.3px)] h-10 md:h-16 text-white" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
             <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#ffffff"></path>
@@ -60,14 +54,13 @@
     </div>
 </section>
 
-<!-- FEATURES SECTION -->
+<!-- FEATURES SECTION (Tetap Sama) -->
 <section class="py-20 bg-white">
     <div class="container mx-auto px-6">
         <div class="text-center mb-16">
             <h2 class="text-3xl font-bold text-gray-800 mb-4">Fokus & Nilai Kami</h2>
             <div class="w-20 h-1 bg-hmti-primary mx-auto rounded-full"></div>
         </div>
-
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <!-- Card 1 -->
             <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition duration-300 text-center group">
@@ -79,7 +72,6 @@
                 <h3 class="text-xl font-bold text-gray-800 mb-3">Teknologi</h3>
                 <p class="text-gray-600">Mengembangkan hard skill mahasiswa dalam rekayasa perangkat lunak, jaringan, dan kecerdasan buatan.</p>
             </div>
-
             <!-- Card 2 -->
             <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition duration-300 text-center group">
                 <div class="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-6 text-hmti-marine group-hover:bg-hmti-marine group-hover:text-white transition">
@@ -90,7 +82,6 @@
                 <h3 class="text-xl font-bold text-gray-800 mb-3">Inovasi Maritim</h3>
                 <p class="text-gray-600">Menerapkan teknologi informasi untuk memecahkan masalah di sektor kelautan dan kemaritiman.</p>
             </div>
-
             <!-- Card 3 -->
             <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition duration-300 text-center group">
                 <div class="w-16 h-16 mx-auto bg-yellow-100 rounded-full flex items-center justify-center mb-6 text-yellow-600 group-hover:bg-hmti-accent group-hover:text-hmti-dark transition">
@@ -105,7 +96,7 @@
     </div>
 </section>
 
-<!-- BERITA TERBARU -->
+<!-- BERITA TERBARU (UPDATE BAGIAN INI) -->
 <section class="py-20 bg-gray-50">
     <div class="container mx-auto px-6">
         <div class="flex justify-between items-end mb-12">
@@ -126,9 +117,14 @@
                             <img src="<?= $b['gambar'] ? '/img/berita/' . $b['gambar'] : 'https://via.placeholder.com/400x250?text=HMTI+News' ?>" 
                                  alt="<?= $b['judul']; ?>" 
                                  class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                            <div class="absolute top-4 left-4 bg-hmti-primary text-white text-xs px-3 py-1 rounded-full font-bold uppercase">
-                                Kegiatan
+                            
+                            <!-- LABEL DINAMIS DI SINI -->
+                            <div class="absolute top-4 left-4">
+                                <span class="<?= $b['warna_label'] ?? 'bg-hmti-primary'; ?> text-white text-xs px-3 py-1 rounded-full font-bold uppercase shadow-sm">
+                                    <?= $b['nama_kategori'] ?? 'Umum'; ?>
+                                </span>
                             </div>
+
                         </div>
                         
                         <div class="p-6 flex-grow flex flex-col">
@@ -163,7 +159,6 @@
     </div>
 </section>
 
-<!-- CUSTOM CSS UNTUK AURORA WAVE -->
 <style>
     @keyframes bounce-slow {
         0%, 100% { transform: translateY(-5%); }
@@ -172,27 +167,7 @@
     .animate-bounce-slow {
         animation: bounce-slow 3s infinite ease-in-out;
     }
-
-    .animated-gradient {
-        /* Gradient 4 warna dengan sudut -45 derajat (diagonal).
-            Urutan warna: Hijau Tua, Hijau Terang, Biru Laut, Kembali ke Hijau Tua
-        */
-        background: linear-gradient(-45deg, #14532d, #16a34a, #1e40af, #14532d);
-        background-size: 400% 400%;
-        animation: gradient-wave 15s ease infinite;
-    }
-
-    @keyframes gradient-wave {
-        0% {
-            background-position: 0% 50%;
-        }
-        50% {
-            background-position: 100% 50%;
-        }
-        100% {
-            background-position: 0% 50%;
-        }
-    }
+    /* Animated Gradient CSS sudah di input.css, tidak perlu ditulis ulang disini */
 </style>
 
 <?= $this->endSection(); ?>

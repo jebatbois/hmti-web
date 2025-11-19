@@ -147,7 +147,10 @@
     <!-- RENDER SEMUA DEPARTEMEN -->
     <?= renderDepartemen('Departemen PPM (Pengembangan & Pengabdian)', $ppm ?? []); ?>
     <?= renderDepartemen('Departemen Minat & Bakat', $minba ?? []); ?>
-    <?= renderDepartemen('Departemen Kominfo', $kominfo ?? []); ?>
+    
+    <!-- Ganti MTI jadi KOMINFO -->
+    <?= renderDepartemen('Departemen Kominfo (Media & TI)', $kominfo ?? []); ?>
+    
     <?= renderDepartemen('Departemen Litbang', $litbang ?? []); ?>
     <?= renderDepartemen('Departemen Kewirausahaan', $kwu ?? []); ?>
 
