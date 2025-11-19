@@ -55,6 +55,10 @@
                         <span class="font-medium">Pengurus</span>
                     </a>
 
+                     <a href="/admin/bank_soal" class="flex items-center px-4 py-3 rounded-lg transition-colors <?= (strpos($title, 'Bank Soal') !== false) ? 'bg-hmti-primary text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white' ?>">
+                    <i class="fas fa-book w-6"></i> <span class="font-medium">Bank Soal</span>
+                    </a>
+
                     <a href="/admin/users" class="flex items-center px-4 py-3 rounded-lg transition-colors <?= (strpos($title, 'Pengguna') !== false) ? 'bg-hmti-primary text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white' ?>">
                         <i class="fas fa-user-cog w-6"></i>
                         <span class="font-medium">Manajemen User</span>

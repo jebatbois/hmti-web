@@ -57,6 +57,12 @@ $routes->group('admin', ['filter' => 'auth'], function($routes) {
     $routes->post('komentar/toggle/(:num)/(:segment)', 'Admin\InteraksiController::toggleKomentar/$1/$2');
     $routes->post('komentar/delete/(:num)', 'Admin\InteraksiController::deleteKomentar/$1');
 
+    // CRUD BANK SOAL
+    $routes->get('bank_soal', 'Admin\BankSoalController::index');
+    $routes->get('bank_soal/create', 'Admin\BankSoalController::create');
+    $routes->post('bank_soal/store', 'Admin\BankSoalController::store');
+    $routes->post('bank_soal/delete/(:num)', 'Admin\BankSoalController::delete/$1');
+
     // Manajemen User
     $routes->get('users', 'Admin\UserController::index');
     $routes->get('users/create', 'Admin\UserController::create');
@@ -87,3 +93,6 @@ $routes->get('/kontak', 'Interaksi::kontak');
 $routes->post('/kontak/kirim', 'Interaksi::kirimKontak');
 $routes->get('/mimbar', 'Interaksi::mimbar');
 $routes->post('/mimbar/kirim', 'Interaksi::kirimMimbar');
+
+// Bank Soal
+$routes->get('/bank-soal', 'BankSoal::index');

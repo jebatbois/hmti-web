@@ -4,7 +4,7 @@
 
 <section class="bg-gradient-to-r from-blue-600 to-hmti-primary py-24 text-center text-white relative z-10">
     <div class="container mx-auto px-6">
-        <h1 class="text-4xl md:text-5xl font-extrabold mb-4">Mimbar Bebas</h1>
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-4 mt-9">Mimbar Bebas</h1>
         <p class="text-blue-100 text-lg max-w-2xl mx-auto mb-8">
             Ruang ekspresi mahasiswa Informatika. Sampaikan aspirasi, unek-unek, salam, atau pantun secara bebas dan bertanggung jawab.
         </p>

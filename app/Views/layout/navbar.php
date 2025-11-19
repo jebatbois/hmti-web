@@ -24,6 +24,7 @@
                 <a href="/profil" class="text-white hover:text-hmti-accent font-medium transition text-base">Profil</a>
                 <a href="/proker" class="text-white hover:text-hmti-accent font-medium transition text-base">Program Kerja</a>
                 <a href="/berita" class="text-white hover:text-hmti-accent font-medium transition text-base">Berita</a>
+                <a href="/bank-soal" class="text-white hover:text-hmti-accent font-medium transition text-base">Bank Soal</a>
                 <a href="/kontak" class="text-white hover:text-hmti-accent font-medium transition text-base">Kontak</a>
                 <a href="/mimbar" class="text-white hover:text-hmti-accent font-medium transition text-base">Mimbar</a>
             </div>
@@ -45,6 +46,7 @@
         <a href="/profil" class="block px-6 py-3 text-white hover:bg-hmti-primary border-b border-hmti-primary/30">Profil</a>
         <a href="/proker" class="block px-6 py-3 text-white hover:bg-hmti-primary border-b border-hmti-primary/30">Program Kerja</a>
         <a href="/berita" class="block px-6 py-3 text-white hover:bg-hmti-primary">Berita</a>
+        <a href="/bank-soal" class="block px-6 py-3 text-white hover:bg-hmti-primary border-b border-hmti-primary/30">Bank Soal</a>
         <a href="/kontak" class="block px-6 py-3 text-white hover:bg-hmti-primary border-b border-hmti-primary/30">Kontak</a>
         <a href="/mimbar" class="block px-6 py-3 text-white hover:bg-hmti-primary">Mimbar</a>
         
