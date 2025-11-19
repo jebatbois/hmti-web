@@ -15,8 +15,8 @@
     </div>
 </section>
 
-<!-- Wall of Aspirations -->
-<section class="py-16 bg-gray-50 min-h-screen">
+<!-- Wall of Aspirations (Slider Mode) -->
+<section class="py-16 bg-gray-50">
     <div class="container mx-auto px-6">
         
         <?php if(session()->getFlashdata('success')) : ?>
@@ -41,39 +41,65 @@
 
         <?php else: ?>
 
-            <!-- TAMPILAN JIKA ADA DATA -->
-            <div class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
-                <?php foreach($aspirasi as $a) : ?>
-                    <!-- 
-                        PERUBAHAN: Mengembalikan penggunaan $a['warna_bg'] 
-                        agar kartu tampil warna-warni sesuai database.
-                    -->
-                    <div class="break-inside-avoid <?= $a['warna_bg']; ?> p-6 rounded-xl shadow-md hover:shadow-xl transition duration-300 transform hover:-rotate-1 border border-black/5 relative group">
-                        <div class="absolute top-4 right-4 text-black/20 text-4xl">
-                            <i class="fas fa-quote-right"></i>
-                        </div>
-                        
-                        <p class="text-gray-800 text-lg font-medium leading-relaxed mb-6 relative z-10 font-handwriting">
-                            "<?= nl2br(esc($a['isi_aspirasi'])); ?>"
-                        </p>
-                        
-                        <div class="flex justify-between items-end border-t border-black/10 pt-4">
-                            <div>
-                                <span class="block font-bold text-gray-900">
-                                    <?= esc($a['nama_pengirim']); ?>
-                                </span>
-                                <?php if($a['angkatan']): ?>
-                                    <span class="text-xs text-gray-700 bg-white/50 px-2 py-0.5 rounded border border-black/10">
-                                        Angkatan <?= esc($a['angkatan']); ?>
-                                    </span>
-                                <?php endif; ?>
+            <!-- SLIDER CONTAINER -->
+            <div class="relative group">
+                
+                <!-- Tombol Navigasi (Desktop) -->
+                <button onclick="scrollMimbar(-1)" class="hidden md:block absolute left-0 top-1/2 -translate-y-1/2 -ml-4 z-20 bg-white text-hmti-primary w-10 h-10 rounded-full shadow-lg hover:bg-hmti-primary hover:text-white transition opacity-0 group-hover:opacity-100 flex items-center justify-center">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button onclick="scrollMimbar(1)" class="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 -mr-4 z-20 bg-white text-hmti-primary w-10 h-10 rounded-full shadow-lg hover:bg-hmti-primary hover:text-white transition opacity-0 group-hover:opacity-100 flex items-center justify-center">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+
+                <!-- SLIDER TRACK -->
+                <div id="mimbarSlider" class="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 no-scrollbar scroll-smooth">
+                    
+                    <?php foreach($aspirasi as $a) : ?>
+                        <!-- CARD ITEM -->
+                        <!-- 
+                           PERBAIKAN LEBAR KARTU:
+                           - w-[85%]: Lebar fix 85% layar HP (agar kartu berikutnya mengintip sedikit).
+                           - md:w-[calc(33.333%-1.5rem)]: Lebar fix 1/3 layar Desktop dikurangi gap.
+                           - HAPUS class 'w-full' dan 'min-w' yang bikin kartu kegedean.
+                        -->
+                        <div class="snap-center flex-shrink-0 w-[85%] md:w-[calc(33.333%-1.5rem)] <?= $a['warna_bg']; ?> p-6 rounded-xl shadow-md hover:shadow-xl transition duration-300 transform hover:-rotate-1 border border-black/5 relative flex flex-col justify-between h-64">
+                            
+                            <div class="absolute top-4 right-4 text-black/20 text-4xl">
+                                <i class="fas fa-quote-right"></i>
                             </div>
-                            <span class="text-xs text-gray-600">
-                                <?= date('d M Y', strtotime($a['created_at'])); ?>
-                            </span>
+                            
+                            <div class="flex-grow overflow-y-auto no-scrollbar mb-4 relative z-10">
+                                <p class="text-gray-800 text-lg font-medium leading-relaxed font-handwriting">
+                                    "<?= nl2br(esc($a['isi_aspirasi'])); ?>"
+                                </p>
+                            </div>
+                            
+                            <div class="flex justify-between items-end border-t border-black/10 pt-4 mt-auto">
+                                <div>
+                                    <span class="block font-bold text-gray-900 text-sm">
+                                        <?= esc($a['nama_pengirim']); ?>
+                                    </span>
+                                    <?php if($a['angkatan']): ?>
+                                        <span class="text-xs text-gray-700 bg-white/50 px-2 py-0.5 rounded border border-black/10">
+                                            Angkatan <?= esc($a['angkatan']); ?>
+                                        </span>
+                                    <?php endif; ?>
+                                </div>
+                                <span class="text-xs text-gray-600">
+                                    <?= date('d M Y', strtotime($a['created_at'])); ?>
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>
+                    <?php endforeach; ?>
+
+                </div>
+                
+                <!-- Indikator Mobile -->
+                <div class="md:hidden text-center text-gray-400 text-xs mt-2 animate-pulse">
+                    &larr; Geser untuk melihat lainnya &rarr;
+                </div>
+
             </div>
 
         <?php endif; ?>
@@ -115,6 +141,22 @@
     .font-handwriting {
         font-family: 'Patrick Hand', cursive;
     }
+    
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .no-scrollbar {
+        -ms-overflow-style: none;  
+        scrollbar-width: none;  
+    }
 </style>
+
+<script>
+    function scrollMimbar(direction) {
+        const container = document.getElementById('mimbarSlider');
+        const scrollAmount = container.offsetWidth / 3; 
+        container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+    }
+</script>
 
 <?= $this->endSection(); ?>
