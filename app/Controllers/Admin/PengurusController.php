@@ -9,67 +9,106 @@ class PengurusController extends BaseController
 {
     protected $pengurusModel;
     
-    // DATA STRUKTUR ORGANISASI (UPDATED)
-    protected $struktur = [
-        'Pengurus Inti' => [
-            'base_urutan' => 0,
-            'jabatan' => [
-                'Ketua Himpunan', 
-                'Wakil Ketua', 
-                'Sekretaris Umum', 
-                'Sekretaris Umum 1', 
-                'Sekretaris Umum 2', 
-                'Bendahara Umum',
-                'Bendahara Umum 1',
-                'Bendahara Umum 2'
-            ],
-            'sub_divisi' => []
-        ],
-        'Departemen PPM' => [ 
-            'base_urutan' => 10,
-            // GANTI Staff Ahli -> Kepala Divisi
-            'jabatan' => ['Kepala Departemen', 'Sekretaris Departemen', 'Kepala Divisi', 'Staff'],
-            'sub_divisi' => [
-                'Divisi Pengembangan SDM & Kaderisasi',
-                'Divisi Hubungan & Relasi',
-                'Divisi Sosial & Pengabdian',
-                'Divisi Edukasi & Kepemimpinan'
-            ]
-        ],
-        'Departemen Kominfo' => [ 
-            'base_urutan' => 30,
-            'jabatan' => ['Kepala Departemen', 'Sekretaris Departemen', 'Kepala Divisi', 'Staff'],
-            'sub_divisi' => [
-                'Divisi Pengembangan Sistem & Infrastruktur',
-                'Divisi Desain & Produksi Multimedia',
-                'Divisi Publikasi & Dokumentasi',
-                'Divisi Konten & Branding Digital'
-            ]
-        ],
-        'Departemen Litbang' => [ 
-            'base_urutan' => 50,
-            'jabatan' => ['Kepala Departemen', 'Sekretaris Departemen', 'Kepala Divisi', 'Staff'],
-            'sub_divisi' => [
-                'Divisi Pelatihan & Akademik',
-                'Divisi Riset & Inovasi',
-                'Divisi Kompetisi & Prestasi'
-            ]
-        ],
-        'Departemen Kewirausahaan' => [
-            'base_urutan' => 70,
-            'jabatan' => ['Kepala Departemen', 'Sekretaris Departemen', 'Kepala Divisi', 'Staff'],
-            'sub_divisi' => [
-                'Divisi Bisnis & Inovasi',
-            ]
-        ],
-        'Departemen Minat & Bakat' => [
-            'base_urutan' => 90,
-            'jabatan' => ['Kepala Departemen', 'Sekretaris Departemen', 'Kepala Divisi', 'Staff'],
-            'sub_divisi' => [
-                'Divisi Event & Kreativitas',
-            ]
-        ],
-    ];
+    // STRUKTUR DINAMIS BERDASARKAN PERIODE
+    protected function getStruktur($periode) {
+        // PERIODE ARSIP (2024/2025) - SISTEM DIVISI LAMA
+        if ($periode == '2024/2025') { 
+            return [
+                'Pengurus Inti' => [
+                    'base_urutan' => 0,
+                    'jabatan' => ['Ketua Himpunan', 'Wakil Ketua', 'Sekretaris Umum 1', 'Sekretaris Umum 2', 'Bendahara Umum'],
+                    'sub_divisi' => []
+                ],
+                'Divisi Organisasi dan Kaderisasi' => [
+                    'base_urutan' => 10,
+                    'jabatan' => ['Ketua Divisi', 'Sekretaris Divisi', 'Anggota'],
+                    'sub_divisi' => []
+                ],
+                'Divisi Aspirasi, Minat dan Bakat' => [
+                    'base_urutan' => 30,
+                    'jabatan' => ['Ketua Divisi', 'Sekretaris Divisi', 'Anggota'],
+                    'sub_divisi' => []
+                ],
+                'Divisi Penelitian, Pengembangan dan Pendidikan' => [
+                    'base_urutan' => 50,
+                    'jabatan' => ['Ketua Divisi', 'Sekretaris Divisi', 'Anggota'],
+                    'sub_divisi' => []
+                ],
+                'Divisi Pers dan Informasi' => [
+                    'base_urutan' => 70,
+                    'jabatan' => ['Ketua Divisi', 'Sekretaris Divisi', 'Anggota'],
+                    'sub_divisi' => []
+                ],
+                'Divisi Kewirausahaan' => [
+                    'base_urutan' => 90,
+                    'jabatan' => ['Ketua Divisi', 'Sekretaris Divisi', 'Anggota'],
+                    'sub_divisi' => []
+                ],
+            ];
+        } 
+        
+        // PERIODE SEKARANG (2025/2026) - SISTEM DEPARTEMEN BARU
+        else { 
+             return [
+                'Pengurus Inti' => [
+                    'base_urutan' => 0,
+                    'jabatan' => [
+                        'Ketua Himpunan', 
+                        'Wakil Ketua', 
+                        'Sekretaris Umum', 
+                        'Sekretaris Umum 1', 
+                        'Sekretaris Umum 2', 
+                        'Bendahara Umum',
+                        'Bendahara Umum',
+                    ],
+                    'sub_divisi' => []
+                ],
+                'Departemen PPM' => [
+                    'base_urutan' => 10,
+                    'jabatan' => ['Kepala Departemen', 'Sekretaris Departemen', 'Kepala Divisi', 'Staff'],
+                    'sub_divisi' => [
+                        'Divisi Pengembangan SDM & Kaderisasi',
+                        'Divisi Hubungan & Relasi',
+                        'Divisi Sosial & Pengabdian',
+                        'Divisi Edukasi & Kepemimpinan'
+                    ]
+                ],
+                'Departemen Kominfo' => [
+                    'base_urutan' => 30,
+                    'jabatan' => ['Kepala Departemen', 'Sekretaris Departemen', 'Kepala Divisi', 'Staff'],
+                    'sub_divisi' => [
+                        'Divisi Pengembangan Sistem & Infrastruktur',
+                        'Divisi Desain & Produksi Multimedia',
+                        'Divisi Publikasi & Dokumentasi',
+                        'Divisi Konten & Branding Digital'
+                    ]
+                ],
+                'Departemen Litbang' => [
+                    'base_urutan' => 50,
+                    'jabatan' => ['Kepala Departemen', 'Sekretaris Departemen', 'Kepala Divisi', 'Staff'],
+                    'sub_divisi' => [
+                        'Divisi Pelatihan & Akademik',
+                        'Divisi Riset & Inovasi',
+                        'Divisi Kompetisi & Prestasi'
+                    ]
+                ],
+                'Departemen Kewirausahaan' => [
+                    'base_urutan' => 70,
+                    'jabatan' => ['Kepala Departemen', 'Sekretaris Departemen', 'Kepala Divisi', 'Staff'],
+                    'sub_divisi' => [
+                        'Divisi Bisnis & Inovasi',
+                    ]
+                ],
+                'Departemen Minat & Bakat' => [
+                    'base_urutan' => 90,
+                    'jabatan' => ['Kepala Departemen', 'Sekretaris Departemen', 'Kepala Divisi', 'Staff'],
+                    'sub_divisi' => [
+                        'Divisi Event & Kreativitas',
+                    ]
+                ],
+            ];
+        }
+    }
 
     public function __construct()
     {
@@ -88,7 +127,7 @@ class PengurusController extends BaseController
         $this->cekAksesAdmin();
         $data = [
             'title'    => 'Manajemen Pengurus',
-            'pengurus' => $this->pengurusModel->orderBy('urutan', 'ASC')->findAll()
+            'pengurus' => $this->pengurusModel->orderBy('periode', 'DESC')->orderBy('urutan', 'ASC')->findAll()
         ];
         return view('admin/pengurus/index', $data);
     }
@@ -98,7 +137,8 @@ class PengurusController extends BaseController
         $this->cekAksesAdmin();
         $data = [
             'title' => 'Tambah Pengurus Baru',
-            'struktur' => $this->struktur
+            'struktur_2025' => $this->getStruktur('2024/2025'),
+            'struktur_2026' => $this->getStruktur('2025/2026')
         ];
         return view('admin/pengurus/create', $data);
     }
@@ -108,6 +148,7 @@ class PengurusController extends BaseController
         $this->cekAksesAdmin();
         if (!$this->validate([
             'nama'       => 'required',
+            'periode'    => 'required',
             'jabatan'    => 'required',
             'departemen' => 'required',
             'urutan'     => 'required|numeric',
@@ -123,6 +164,7 @@ class PengurusController extends BaseController
 
         $this->pengurusModel->save([
             'nama'       => $this->request->getVar('nama'),
+            'periode'    => $this->request->getVar('periode'),
             'jabatan'    => $this->request->getVar('jabatan'),
             'departemen' => $this->request->getVar('departemen'),
             'sub_divisi' => $this->request->getVar('sub_divisi'),
@@ -137,10 +179,15 @@ class PengurusController extends BaseController
     public function edit($id)
     {
         $this->cekAksesAdmin();
+        $p = $this->pengurusModel->find($id);
+        
         $data = [
             'title'    => 'Edit Pengurus',
-            'p'        => $this->pengurusModel->find($id),
-            'struktur' => $this->struktur
+            'p'        => $p,
+            // Fix: Pass variable $struktur for the initial view rendering
+            'struktur' => $this->getStruktur($p['periode']), 
+            'struktur_2025' => $this->getStruktur('2024/2025'),
+            'struktur_2026' => $this->getStruktur('2025/2026')
         ];
         return view('admin/pengurus/edit', $data);
     }
@@ -151,6 +198,7 @@ class PengurusController extends BaseController
         
         if (!$this->validate([
             'nama'    => 'required',
+            'periode' => 'required',
             'jabatan' => 'required',
             'urutan'  => 'required|numeric',
         ])) {
@@ -171,6 +219,7 @@ class PengurusController extends BaseController
 
         $this->pengurusModel->update($id, [
             'nama'       => $this->request->getVar('nama'),
+            'periode'    => $this->request->getVar('periode'),
             'jabatan'    => $this->request->getVar('jabatan'),
             'departemen' => $this->request->getVar('departemen'),
             'sub_divisi' => $this->request->getVar('sub_divisi'),

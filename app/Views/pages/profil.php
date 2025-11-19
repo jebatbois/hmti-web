@@ -5,16 +5,37 @@
 <!-- Header Section -->
 <section class="bg-hmti-light pt-24 pb-12 md:pt-32 md:pb-16 text-center px-4">
     <div class="container mx-auto">
+        
+        <!-- BADGE NAMA KABINET -->
+        <div class="mb-4 animate-bounce-slow">
+            <span class="inline-block bg-hmti-accent text-hmti-dark font-extrabold px-6 py-2 rounded-full shadow-lg border-4 border-white text-lg md:text-xl transform -rotate-2">
+                ✨ <?= $nama_kabinet; ?> ✨
+            </span>
+        </div>
+
         <h1 class="text-3xl md:text-4xl font-extrabold text-hmti-dark mb-2 md:mb-4">Struktur Organisasi</h1>
-        <p class="text-sm md:text-lg text-gray-600 max-w-2xl mx-auto">
-            Mengenal lebih dekat fungsionaris Himpunan Mahasiswa Teknik Informatika periode ini.
+        <p class="text-sm md:text-lg text-gray-600 max-w-2xl mx-auto mb-6">
+            Mengenal lebih dekat fungsionaris Himpunan Mahasiswa Teknik Informatika.
         </p>
+
+        <!-- FILTER PERIODE -->
+        <form action="" method="get" class="inline-block bg-white p-2 rounded-full shadow-md border border-gray-200">
+            <label class="text-sm font-bold text-gray-600 ml-3 mr-2">Periode:</label>
+            <select name="periode" onchange="this.form.submit()" class="bg-gray-100 text-hmti-primary font-bold py-1 px-3 rounded-full focus:outline-none cursor-pointer">
+                <?php foreach ($periode_list as $p) : ?>
+                    <option value="<?= $p; ?>" <?= ($p == $periode_aktif) ? 'selected' : ''; ?>>
+                        <?= $p; ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </form>
     </div>
 </section>
 
 <div class="container mx-auto px-4 md:px-6 pb-20">
 
     <!-- 1. PENGURUS INTI (BPH) -->
+    <?php if(!empty($inti)): ?>
     <div class="mb-12 md:mb-16 mt-8 md:mt-12">
         
         <div class="text-center relative mb-8 md:mb-10">
@@ -29,16 +50,14 @@
         </div>
 
         <?php 
-        $leaders = [];
-        $members = [];
+        $leaders = []; // Ketua & Wakil
+        $members = []; // Sekkum & Bendum
 
-        if(!empty($inti)) {
-            foreach ($inti as $p) {
-                if ($p['urutan'] <= 2) {
-                    $leaders[] = $p;
-                } else {
-                    $members[] = $p;
-                }
+        foreach ($inti as $p) {
+            if ($p['urutan'] <= 2) {
+                $leaders[] = $p;
+            } else {
+                $members[] = $p;
             }
         }
         ?>
@@ -89,10 +108,17 @@
             <?php endforeach; ?>
         </div>
     </div>
+    <?php endif; ?>
 
-    <!-- HELPER FUNCTION DEPARTEMEN -->
+    <!-- RENDER DEPARTEMEN SECARA DINAMIS -->
     <?php 
-    function renderDepartemen($nama_dept, $data_anggota) {
+    if(!empty($departemen)) {
+        foreach ($departemen as $nama_dept => $data_anggota) {
+            renderSectionDepartemen($nama_dept, $data_anggota);
+        }
+    }
+
+    function renderSectionDepartemen($nama_dept, $data_anggota) {
         if (empty($data_anggota)) return;
     ?>
         <div class="mb-12">
@@ -103,30 +129,22 @@
 
             <div class="flex overflow-x-auto md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 pb-4 no-scrollbar snap-x snap-mandatory">
                 <?php foreach ($data_anggota as $p) : 
-                    // LOGIKA WARNA & LABEL
                     $jabatan = $p['jabatan'];
-                    
-                    // 1. Cek KADEP (Kepala Departemen / Koordinator)
-                    $isKadep = (strpos($jabatan, 'Koordinator') !== false) || 
-                               (strpos($jabatan, 'Kepala Departemen') !== false) || 
-                               (strpos($jabatan, 'Kadep') !== false);
-                    
-                    // 2. Cek KADIV (Kepala Divisi) - Pastikan BUKAN Kadep
+                    $isKadep = (strpos($jabatan, 'Koordinator') !== false) || (strpos($jabatan, 'Kepala Departemen') !== false) || (strpos($jabatan, 'Kadep') !== false) || (strpos($jabatan, 'Ketua Divisi') !== false);
                     $isKadiv = !$isKadep && (strpos($jabatan, 'Kepala Divisi') !== false);
 
-                    // Tentukan Class CSS berdasarkan peran
                     $cardClass = '';
                     $badgeText = '';
                     $badgeClass = '';
-                    $avatarBg = '#1e40af'; // Default Biru (Staff)
+                    $avatarBg = '#1e40af'; 
 
                     if ($isKadep) {
-                        $cardClass = 'bg-yellow-50 border-hmti-accent'; // Kuning
+                        $cardClass = 'bg-yellow-50 border-hmti-accent'; 
                         $badgeText = 'KADEP';
                         $badgeClass = 'bg-hmti-accent text-hmti-dark';
                         $avatarBg = '#facc15';
                     } elseif ($isKadiv) {
-                        $cardClass = 'bg-purple-50 border-purple-300'; // Ungu Muda
+                        $cardClass = 'bg-purple-50 border-purple-300'; 
                         $badgeText = 'KADIV';
                         $badgeClass = 'bg-purple-200 text-purple-800';
                         $avatarBg = '#a855f7';
@@ -168,13 +186,6 @@
             </div>
         </div>
     <?php } ?>
-
-    <!-- RENDER SEMUA DEPARTEMEN -->
-    <?= renderDepartemen('Departemen PPM (Pengembangan & Pengabdian)', $ppm ?? []); ?>
-    <?= renderDepartemen('Departemen Minat & Bakat', $minba ?? []); ?>
-    <?= renderDepartemen('Departemen Kominfo (Media & TI)', $kominfo ?? []); ?>
-    <?= renderDepartemen('Departemen Litbang', $litbang ?? []); ?>
-    <?= renderDepartemen('Departemen Kewirausahaan', $kwu ?? []); ?>
 
 </div>
 
