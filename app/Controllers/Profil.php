@@ -22,7 +22,7 @@ class Profil extends BaseController
             // Ambil data per departemen
             'ppm'     => $this->pengurusModel->getDepartemen('Departemen PPM'),
             'minba'   => $this->pengurusModel->getDepartemen('Departemen Minat & Bakat'), // <--- DEPARTEMEN BARU
-            'mti'     => $this->pengurusModel->getDepartemen('Departemen MTI'),
+            'kominfo'     => $this->pengurusModel->getDepartemen('Departemen Kominfo'),
             'litbang' => $this->pengurusModel->getDepartemen('Departemen Litbang'),
             'kwu'     => $this->pengurusModel->getDepartemen('Departemen Kewirausahaan'),
         ];

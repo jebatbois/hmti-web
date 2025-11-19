@@ -4,7 +4,7 @@
 
 <section class="bg-gradient-to-r from-blue-600 to-hmti-primary py-24 text-center text-white relative z-10">
     <div class="container mx-auto px-6">
-        <h1 class="text-4xl md:text-5xl font-extrabold mb-4 mt-9">Mimbar Bebas</h1>
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-4">Mimbar Bebas</h1>
         <p class="text-blue-100 text-lg max-w-2xl mx-auto mb-8">
             Ruang ekspresi mahasiswa Informatika. Sampaikan aspirasi, unek-unek, salam, atau pantun secara bebas dan bertanggung jawab.
         </p>
@@ -25,10 +25,10 @@
             </div>
         <?php endif; ?>
 
-        <!-- LOGIC LAYOUT: Cek Dulu Datanya -->
+        <!-- LOGIC LAYOUT -->
         <?php if(empty($aspirasi)): ?>
             
-            <!-- TAMPILAN JIKA KOSONG (Full Width & Centered) -->
+            <!-- TAMPILAN JIKA KOSONG -->
             <div class="flex justify-center items-center py-12">
                 <div class="bg-white p-10 rounded-2xl shadow-md text-center max-w-lg w-full border-2 border-dashed border-gray-300">
                     <div class="text-gray-300 mb-4">
@@ -41,10 +41,13 @@
 
         <?php else: ?>
 
-            <!-- TAMPILAN JIKA ADA DATA (Masonry Grid) -->
+            <!-- TAMPILAN JIKA ADA DATA -->
             <div class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
                 <?php foreach($aspirasi as $a) : ?>
-                    <!-- Card Aspirasi -->
+                    <!-- 
+                        PERUBAHAN: Mengembalikan penggunaan $a['warna_bg'] 
+                        agar kartu tampil warna-warni sesuai database.
+                    -->
                     <div class="break-inside-avoid <?= $a['warna_bg']; ?> p-6 rounded-xl shadow-md hover:shadow-xl transition duration-300 transform hover:-rotate-1 border border-black/5 relative group">
                         <div class="absolute top-4 right-4 text-black/20 text-4xl">
                             <i class="fas fa-quote-right"></i>
@@ -60,12 +63,12 @@
                                     <?= esc($a['nama_pengirim']); ?>
                                 </span>
                                 <?php if($a['angkatan']): ?>
-                                    <span class="text-xs text-gray-600 bg-white/50 px-2 py-0.5 rounded">
+                                    <span class="text-xs text-gray-700 bg-white/50 px-2 py-0.5 rounded border border-black/10">
                                         Angkatan <?= esc($a['angkatan']); ?>
                                     </span>
                                 <?php endif; ?>
                             </div>
-                            <span class="text-xs text-gray-500">
+                            <span class="text-xs text-gray-600">
                                 <?= date('d M Y', strtotime($a['created_at'])); ?>
                             </span>
                         </div>
@@ -109,7 +112,6 @@
 </section>
 
 <style>
-    /* Google Font sudah di-import di template.php sekarang */
     .font-handwriting {
         font-family: 'Patrick Hand', cursive;
     }

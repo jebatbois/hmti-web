@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Controllers\BaseController;
 use App\Models\PesanModel;
 use App\Models\MimbarModel;
 
@@ -16,7 +17,6 @@ class Interaksi extends BaseController
         $this->mimbarModel = new MimbarModel();
     }
 
-    // --- HALAMAN KONTAK ---
     public function kontak()
     {
         $data = ['title' => 'Hubungi Kami - HMTI FT-TM'];
@@ -48,7 +48,6 @@ class Interaksi extends BaseController
     {
         $data = [
             'title' => 'Mimbar Bebas - Suara Mahasiswa',
-            // Ambil pesan terbaru dulu
             'aspirasi' => $this->mimbarModel->orderBy('created_at', 'DESC')->findAll()
         ];
         return view('pages/mimbar', $data);
@@ -60,15 +59,15 @@ class Interaksi extends BaseController
             return redirect()->back()->withInput()->with('error', 'Pesan tidak boleh kosong.');
         }
 
-        // Random warna background biar estetik (Tailwind classes)
+        // KEMBALIKAN LOGIKA WARNA ACAK
         $colors = ['bg-yellow-100', 'bg-blue-100', 'bg-green-100', 'bg-pink-100', 'bg-purple-100', 'bg-orange-100'];
         $randomColor = $colors[array_rand($colors)];
 
         $this->mimbarModel->save([
-            'nama_pengirim' => $this->request->getVar('nama_pengirim') ?: 'Anonim', // Jika kosong jadi Anonim
+            'nama_pengirim' => $this->request->getVar('nama_pengirim') ?: 'Anonim',
             'angkatan'      => $this->request->getVar('angkatan'),
             'isi_aspirasi'  => $this->request->getVar('isi_aspirasi'),
-            'warna_bg'      => $randomColor
+            'warna_bg'      => $randomColor // Simpan warna acak
         ]);
 
         return redirect()->to('/mimbar')->with('success', 'Aspirasi Anda berhasil ditempel!');
