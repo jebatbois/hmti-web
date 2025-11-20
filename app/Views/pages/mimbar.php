@@ -20,8 +20,15 @@
     <div class="container mx-auto px-6">
         
         <?php if(session()->getFlashdata('success')) : ?>
-            <div class="max-w-2xl mx-auto bg-green-100 text-green-800 p-4 rounded-lg mb-8 text-center shadow-sm">
+            <div class="max-w-2xl mx-auto bg-green-100 text-green-800 p-4 rounded-lg mb-8 text-center shadow-sm border border-green-200">
                 <i class="fas fa-check-circle mr-2"></i> <?= session()->getFlashdata('success'); ?>
+            </div>
+        <?php endif; ?>
+
+        <!-- ERROR MESSAGE (KATA KASAR) -->
+        <?php if(session()->getFlashdata('error')) : ?>
+            <div class="max-w-2xl mx-auto bg-red-100 text-red-800 p-4 rounded-lg mb-8 text-center shadow-sm border border-red-200 animate-pulse">
+                <i class="fas fa-exclamation-triangle mr-2"></i> <?= session()->getFlashdata('error'); ?>
             </div>
         <?php endif; ?>
 
@@ -57,12 +64,6 @@
                     
                     <?php foreach($aspirasi as $a) : ?>
                         <!-- CARD ITEM -->
-                        <!-- 
-                           PERBAIKAN LEBAR KARTU:
-                           - w-[85%]: Lebar fix 85% layar HP (agar kartu berikutnya mengintip sedikit).
-                           - md:w-[calc(33.333%-1.5rem)]: Lebar fix 1/3 layar Desktop dikurangi gap.
-                           - HAPUS class 'w-full' dan 'min-w' yang bikin kartu kegedean.
-                        -->
                         <div class="snap-center flex-shrink-0 w-[85%] md:w-[calc(33.333%-1.5rem)] <?= $a['warna_bg']; ?> p-6 rounded-xl shadow-md hover:shadow-xl transition duration-300 transform hover:-rotate-1 border border-black/5 relative flex flex-col justify-between h-64">
                             
                             <div class="absolute top-4 right-4 text-black/20 text-4xl">
@@ -106,10 +107,32 @@
 
         <!-- Form Section -->
         <div id="form-aspirasi" class="max-w-2xl mx-auto mt-20">
+            
+            <!-- WARNING BOX (Penambahan Fitur) -->
+            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6 rounded-r-lg shadow-sm">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-exclamation-circle text-yellow-600 text-xl"></i>
+                    </div>
+                    <div class="ml-3">
+                        <h3 class="text-sm font-bold text-yellow-800">Aturan Mimbar Bebas</h3>
+                        <div class="mt-1 text-sm text-yellow-700">
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>Gunakan bahasa yang sopan dan tidak mengandung SARA.</li>
+                                <li>Dilarang menggunakan kata-kata kasar/kotor (termasuk sensor angka/simbol).</li>
+                                <li>Sistem otomatis memfilter dan menolak pesan yang melanggar.</li>
+                                <li>Tunggu minimal 60 detik untuk mengirim pesan baru (anti spam).</li>
+                                <li>Pesan yang dikirim bersifat publik dan dapat dilihat oleh siapa saja
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-200">
                 <div class="text-center mb-8">
                     <h2 class="text-2xl font-bold text-gray-800">Suarakan Pikiranmu!</h2>
-                    <p class="text-gray-500 text-sm">Pesan akan tampil secara publik. Gunakan bahasa yang sopan.</p>
+                    <p class="text-gray-500 text-sm">Pesan akan tampil secara publik.</p>
                 </div>
 
                 <form action="/mimbar/kirim" method="post">

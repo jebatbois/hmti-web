@@ -115,26 +115,8 @@ class PengurusController extends BaseController
         $this->pengurusModel = new PengurusModel();
     }
 
-    private function cekAksesAdmin()
-    {
-        if (session()->get('role') != 'admin') {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("Akses Ditolak.");
-        }
-    }
-
-    public function index()
-    {
-        $this->cekAksesAdmin();
-        $data = [
-            'title'    => 'Manajemen Pengurus',
-            'pengurus' => $this->pengurusModel->orderBy('periode', 'DESC')->orderBy('urutan', 'ASC')->findAll()
-        ];
-        return view('admin/pengurus/index', $data);
-    }
-
     public function create()
     {
-        $this->cekAksesAdmin();
         $data = [
             'title' => 'Tambah Pengurus Baru',
             'struktur_2025' => $this->getStruktur('2024/2025'),
@@ -145,7 +127,7 @@ class PengurusController extends BaseController
 
     public function store()
     {
-        $this->cekAksesAdmin();
+
         if (!$this->validate([
             'nama'       => 'required',
             'periode'    => 'required',
@@ -178,7 +160,6 @@ class PengurusController extends BaseController
 
     public function edit($id)
     {
-        $this->cekAksesAdmin();
         $p = $this->pengurusModel->find($id);
         
         $data = [
@@ -194,7 +175,6 @@ class PengurusController extends BaseController
 
     public function update($id)
     {
-        $this->cekAksesAdmin();
         
         if (!$this->validate([
             'nama'    => 'required',
@@ -233,7 +213,6 @@ class PengurusController extends BaseController
 
     public function delete($id)
     {
-        $this->cekAksesAdmin();
         $p = $this->pengurusModel->find($id);
         if ($p['foto'] != 'default.png' && file_exists(FCPATH . 'img/pengurus/' . $p['foto'])) {
             unlink(FCPATH . 'img/pengurus/' . $p['foto']);

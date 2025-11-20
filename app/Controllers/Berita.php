@@ -17,9 +17,22 @@ class Berita extends BaseController
         $this->komentarModel = new KomentarModel(); 
     }
 
-    public function index()
+       public function index()
     {
-        $keyword = $this->request->getGet('keyword');
+        $rawKeyword = $this->request->getGet('keyword');
+        $keyword = null;
+
+        if ($rawKeyword) {
+            // Hapus karakter spesial, hanya izinkan huruf, angka, dan spasi
+            // Regex: ^[a-zA-Z0-9 ] berarti selain itu akan dihapus
+            $cleanKeyword = preg_replace('/[^a-zA-Z0-9 ]/', '', $rawKeyword);
+            
+            // Cek apakah setelah dibersihkan masih ada isinya
+            if (!empty(trim($cleanKeyword))) {
+                $keyword = $cleanKeyword;
+            }
+        }
+        
         $query = $this->beritaModel->getBeritaLengkap(); 
 
         if ($keyword) {
@@ -33,7 +46,7 @@ class Berita extends BaseController
             'title'   => 'Berita & Kegiatan - HMTI FT-TM',
             'berita'  => $query->orderBy('berita.created_at', 'DESC')->paginate(6, 'berita'),
             'pager'   => $this->beritaModel->pager,
-            'keyword' => $keyword 
+            'keyword' => $keyword // Tampilkan keyword yang sudah dibersihkan di input
         ];
 
         return view('pages/berita_index', $data);
