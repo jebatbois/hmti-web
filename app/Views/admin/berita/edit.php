@@ -22,7 +22,8 @@
             <label class="block text-gray-700 font-bold mb-2">Kategori / Label</label>
             <select name="kategori_id" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-hmti-primary bg-white">
                 <?php foreach($kategori as $k): ?>
-                    <option value="<?= $k['id']; ?>" <?= ($berita['kategori_id'] == $k['id']) ? 'selected' : ''; ?>>
+                    <!-- Gunakan operator ?? untuk keamanan jika kategori_id null -->
+                    <option value="<?= $k['id']; ?>" <?= (($berita['kategori_id'] ?? '') == $k['id']) ? 'selected' : ''; ?>>
                         <?= $k['nama_kategori']; ?>
                     </option>
                 <?php endforeach; ?>
@@ -33,6 +34,13 @@
         <div class="mb-6">
             <label class="block text-gray-700 font-bold mb-2">Judul Artikel</label>
             <input type="text" name="judul" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-hmti-primary" value="<?= old('judul', $berita['judul']); ?>">
+        </div>
+
+        <!-- Penulis (FIXED) -->
+        <div class="mb-6">
+            <label class="block text-gray-700 font-bold mb-2">Penulis</label>
+            <!-- Tambahkan operator ?? '' agar tidak error jika kolom belum ada -->
+            <input type="text" name="penulis" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-hmti-primary" value="<?= old('penulis', $berita['penulis'] ?? ''); ?>" placeholder="Nama Penulis">
         </div>
 
         <!-- Upload Gambar -->
@@ -47,6 +55,7 @@
                 <p class="text-xs text-gray-500 mt-1">Biarkan kosong jika tidak ingin mengubah gambar.</p>
             </div>
         </div>
+
 
         <!-- Isi Berita -->
         <div class="mb-8">

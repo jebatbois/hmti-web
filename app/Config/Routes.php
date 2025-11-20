@@ -99,3 +99,5 @@ $routes->get('/mimbar', 'Interaksi::mimbar');
 $routes->post('/mimbar/kirim', 'Interaksi::kirimMimbar');
 
 $routes->get('/bank-soal', 'BankSoal::index');
+
+$routes->get('/nawakara', 'ComingSoon::index');

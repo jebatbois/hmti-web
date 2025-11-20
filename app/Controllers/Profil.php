@@ -16,15 +16,24 @@ class Profil extends BaseController
 
     public function index()
     {
-        // 1. Ambil semua periode
+        // 1. Ambil semua periode yang ada di database
         $semuaPeriode = $this->pengurusModel->getAllPeriode();
         
         if (empty($semuaPeriode)) {
-            $semuaPeriode = [date('Y') . '/' . (date('Y') + 1)];
+            // Fallback jika database kosong total
+            $semuaPeriode = ['2024/2025']; 
         }
 
         // 2. Tentukan periode aktif
-        $periodeAktif = $this->request->getGet('periode') ?? $semuaPeriode[0];
+        // PERBAIKAN: Default-kan ke '2024/2025' secara eksplisit jika URL kosong.
+        // Jangan gunakan $semuaPeriode[0] karena itu akan mengambil tahun terbaru (2025/2026).
+        $periodeAktif = $this->request->getGet('periode') ?? '2024/2025';
+
+        // --- LOGIKA REDIRECT KHUSUS ---
+        // Hanya redirect jika user SECARA EKSPLISIT memilih/meminta periode 2025/2026
+        if ($periodeAktif == '2025/2026') {
+            return redirect()->to('/nawakara');
+        }
 
         // --- LOGIKA NAMA KABINET ---
         $listKabinet = [
@@ -32,10 +41,9 @@ class Profil extends BaseController
             '2025/2026' => 'Kabinet Nawakara',
         ];
 
-        // Ambil nama kabinet, jika tidak ada di list gunakan default
         $namaKabinet = $listKabinet[$periodeAktif] ?? 'Kabinet HMTI'; 
 
-        // 3. Ambil Data Pengurus
+        // 3. Ambil Data Pengurus Sesuai Periode
         $allData = $this->pengurusModel->where('periode', $periodeAktif)
                                        ->orderBy('urutan', 'ASC')
                                        ->findAll();

@@ -42,6 +42,13 @@
             <p class="text-xs text-gray-500 mt-1">Format: JPG/PNG/WebP. Max: 10MB.</p>
         </div>
 
+        <!-- Nama Penulis -->
+        <div class="mb-6">
+            <label class="block text-gray-700 font-bold mb-2">Penulis</label>
+            <!-- Default value ambil dari session nama user yang login -->
+            <input type="text" name="penulis" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-hmti-primary" placeholder="Nama Penulis" value="<?= old('penulis', session()->get('nama')); ?>">
+        </div>
+
         <!-- Isi Berita -->
         <div class="mb-8">
             <label class="block text-gray-700 font-bold mb-2">Isi Berita</label>

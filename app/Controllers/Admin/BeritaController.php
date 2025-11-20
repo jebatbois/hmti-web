@@ -17,7 +17,7 @@ class BeritaController extends BaseController
         $this->kategoriModel = new KategoriModel();
     }
 
-    // 1. READ (List Berita)
+    // ... index ...
     public function index()
     {
         $data = [
@@ -27,7 +27,7 @@ class BeritaController extends BaseController
         return view('admin/berita/index', $data);
     }
 
-    // 2. CREATE (Form Tambah)
+    // ... create ...
     public function create()
     {
         $data = [
@@ -37,31 +37,14 @@ class BeritaController extends BaseController
         return view('admin/berita/create', $data);
     }
 
-    // 3. STORE (Proses Simpan)
+    // ... store ...
     public function store()
     {
-        // VALIDASI LENGKAP
         if (!$this->validate([
-            'judul' => [
-                'rules' => 'required|min_length[10]',
-                'errors' => [
-                    'required' => 'Judul berita wajib diisi.',
-                    'min_length' => 'Judul terlalu pendek (minimal 10 karakter).'
-                ]
-            ],
-            'isi' => [
-                'rules' => 'required|min_length[50]',
-                'errors' => [
-                    'required' => 'Isi berita wajib diisi.',
-                    'min_length' => 'Isi berita terlalu singkat (minimal 50 karakter).'
-                ]
-            ],
-            'kategori_id' => [
-                'rules' => 'required', // Hapus is_not_unique sementara jika bikin ribet, required sudah cukup
-                'errors' => [
-                    'required' => 'Kategori berita wajib dipilih.'
-                ]
-            ],
+            'judul' => 'required|min_length[10]',
+            'isi' => 'required|min_length[50]',
+            'kategori_id' => 'required',
+            'penulis' => 'required', // Validasi Penulis
             'gambar' => [
                 'rules' => 'permit_empty|is_image[gambar]|ext_in[gambar,png,jpg,jpeg,gif,webp]|max_size[gambar,10240]',
                 'errors' => [
@@ -89,6 +72,7 @@ class BeritaController extends BaseController
             'judul'       => $this->request->getVar('judul'),
             'slug'        => $slug,
             'kategori_id' => $this->request->getVar('kategori_id'),
+            'penulis'     => $this->request->getVar('penulis'), // Simpan Penulis
             'isi'         => $this->request->getVar('isi'),
             'gambar'      => $namaGambar
         ]);
@@ -96,7 +80,7 @@ class BeritaController extends BaseController
         return redirect()->to('/admin/berita')->with('success', 'Berita berhasil diterbitkan!');
     }
 
-    // 4. EDIT (Form Edit)
+    // ... edit ...
     public function edit($id)
     {
         $data = [
@@ -107,30 +91,14 @@ class BeritaController extends BaseController
         return view('admin/berita/edit', $data);
     }
 
-    // 5. UPDATE (Proses Update)
+    // ... update ...
     public function update($id)
     {
         if (!$this->validate([
-            'judul' => [
-                'rules' => 'required|min_length[10]',
-                'errors' => [
-                    'required' => 'Judul berita wajib diisi.',
-                    'min_length' => 'Judul terlalu pendek (minimal 10 karakter).'
-                ]
-            ],
-            'isi' => [
-                'rules' => 'required|min_length[50]',
-                'errors' => [
-                    'required' => 'Isi berita wajib diisi.',
-                    'min_length' => 'Isi berita terlalu singkat (minimal 50 karakter).'
-                ]
-            ],
-            'kategori_id' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Kategori berita wajib dipilih.'
-                ]
-            ],
+            'judul' => 'required|min_length[10]',
+            'isi' => 'required|min_length[50]',
+            'kategori_id' => 'required',
+            'penulis' => 'required', // Validasi Penulis
             'gambar' => [
                 'rules' => 'permit_empty|is_image[gambar]|ext_in[gambar,png,jpg,jpeg,gif,webp]|max_size[gambar,10240]',
                 'errors' => [
@@ -164,6 +132,7 @@ class BeritaController extends BaseController
             'judul'       => $this->request->getVar('judul'),
             'slug'        => $slug,
             'kategori_id' => $this->request->getVar('kategori_id'),
+            'penulis'     => $this->request->getVar('penulis'), // Update Penulis
             'isi'         => $this->request->getVar('isi'),
             'gambar'      => $namaGambar
         ]);
@@ -171,7 +140,7 @@ class BeritaController extends BaseController
         return redirect()->to('/admin/berita')->with('success', 'Berita berhasil diperbarui!');
     }
 
-    // 6. DELETE (Hapus)
+    // ... delete (sama seperti sebelumnya) ...
     public function delete($id)
     {
         $berita = $this->beritaModel->find($id);

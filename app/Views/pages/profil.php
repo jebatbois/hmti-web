@@ -110,7 +110,7 @@
     </div>
     <?php endif; ?>
 
-    <!-- RENDER DEPARTEMEN SECARA DINAMIS -->
+    <!-- RENDER DEPARTEMEN/DIVISI SECARA DINAMIS -->
     <?php 
     if(!empty($departemen)) {
         foreach ($departemen as $nama_dept => $data_anggota) {
@@ -130,22 +130,35 @@
             <div class="flex overflow-x-auto md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 pb-4 no-scrollbar snap-x snap-mandatory">
                 <?php foreach ($data_anggota as $p) : 
                     $jabatan = $p['jabatan'];
-                    $isKadep = (strpos($jabatan, 'Koordinator') !== false) || (strpos($jabatan, 'Kepala Departemen') !== false) || (strpos($jabatan, 'Kadep') !== false) || (strpos($jabatan, 'Ketua Divisi') !== false);
-                    $isKadiv = !$isKadep && (strpos($jabatan, 'Kepala Divisi') !== false);
+                    
+                    // LOGIKA DETEKSI JABATAN
+                    // 1. KADEP / KETUA DIVISI (Level Tertinggi di Unit) -> Kuning
+                    // Untuk Kabinet Sahitya (Divisi), Ketua Divisi setara Kadep
+                    // TAPI user minta labelnya UNGU untuk Kadiv di Sahitya? 
+                    // Tidak, user minta label KADIV (yang di Nawakara ungu) diterapkan di Sahitya juga.
+                    // Jadi: Ketua Divisi = KADIV (Ungu), Koordinator Dept = KADEP (Kuning)
+
+                    $isKadep = (strpos($jabatan, 'Koordinator') !== false) || 
+                               (strpos($jabatan, 'Kepala Departemen') !== false) || 
+                               (strpos($jabatan, 'Kadep') !== false);
+
+                    $isKadiv = (strpos($jabatan, 'Kepala Divisi') !== false) || 
+                               (strpos($jabatan, 'Ketua Divisi') !== false) ||  // <-- Tambahan untuk Sahitya
+                               (strpos($jabatan, 'Kadiv') !== false);
 
                     $cardClass = '';
                     $badgeText = '';
                     $badgeClass = '';
-                    $avatarBg = '#1e40af'; 
+                    $avatarBg = '#1e40af'; // Default Biru (Staff/Anggota)
 
                     if ($isKadep) {
-                        $cardClass = 'bg-yellow-50 border-hmti-accent'; 
+                        $cardClass = 'bg-yellow-50 border-hmti-accent'; // Kuning
                         $badgeText = 'KADEP';
                         $badgeClass = 'bg-hmti-accent text-hmti-dark';
                         $avatarBg = '#facc15';
                     } elseif ($isKadiv) {
-                        $cardClass = 'bg-purple-50 border-purple-300'; 
-                        $badgeText = 'KADIV';
+                        $cardClass = 'bg-purple-50 border-purple-300'; // Ungu
+                        $badgeText = 'KADIV'; // Label Ungu
                         $badgeClass = 'bg-purple-200 text-purple-800';
                         $avatarBg = '#a855f7';
                     }
