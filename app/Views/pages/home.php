@@ -2,172 +2,193 @@
 
 <?= $this->section('content'); ?>
 
-<!-- HERO SECTION (SUDAH DIPERBAIKI SEBELUMNYA) -->
-<section class="relative text-white overflow-hidden animated-gradient">
-    <!-- ... (kode hero sama seperti sebelumnya) ... -->
-    <!-- Background Decoration -->
-    <div class="absolute top-0 left-0 w-64 h-64 bg-white opacity-5 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl"></div>
-    <div class="absolute bottom-0 right-0 w-96 h-96 bg-hmti-accent opacity-10 rounded-full translate-x-1/3 translate-y-1/3 blur-3xl"></div>
+<section class="relative pt-24 pb-32 md:pt-32 md:pb-48 overflow-hidden text-white"
+         style="background-color: #0b121e;"> <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-green-600/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4 pointer-events-none"></div>
+    
+    <div class="absolute inset-0 bg-[url('/img/pattern.png')] opacity-5 mix-blend-overlay"></div>
 
-    <div class="container mx-auto px-6 pt-28 pb-16 md:pt-32 md:pb-20 relative z-10">
-        <div class="flex flex-col-reverse md:flex-row items-center justify-center"> 
+    <div class="container mx-auto px-6 relative z-10">
+        <div class="flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-20">
             
-            <!-- Text Column -->
-            <div class="w-full md:w-3/5 text-center md:text-left mt-8 md:mt-0">
-                <span class="text-hmti-accent font-bold tracking-wider uppercase text-sm md:text-base mb-2 block">
-                    Selamat Datang di Website Resmi
+            <div class="w-full lg:w-6/12 text-center lg:text-left">
+                <span class="inline-block py-1 px-3 rounded-full bg-green-900/50 border border-green-500/30 text-green-400 text-xs font-bold uppercase tracking-widest mb-6 backdrop-blur-md">
+                    🚀 Welcome to HMTI Official
                 </span>
-                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
-                    Himpunan Mahasiswa<br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-blue-200">
-                        Teknik Informatika
+                
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 tracking-tight">
+                    Mewujudkan <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">
+                        Generasi Digital
                     </span>
+                    <br> Yang Berintegritas.
                 </h1>
-                <p class="text-gray-100 text-lg md:text-xl mb-8 leading-relaxed max-w-xl mx-auto md:mx-0">
-                    Wadah aspirasi dan kreasi mahasiswa Teknik Informatika Universitas Maritim Raja Ali Haji yang unggul, beretika, dan berwawasan kemaritiman.
+                
+                <p class="text-gray-400 text-lg mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
+                    Wadah aspirasi dan kreasi mahasiswa Teknik Informatika UMRAH untuk mencetak pemimpin masa depan yang unggul di bidang teknologi.
                 </p>
                 
-                <div class="flex flex-col md:flex-row gap-4 justify-center md:justify-start">
-                    <a href="/profil" class="bg-hmti-accent text-hmti-dark font-bold px-8 py-3 rounded-full shadow-lg hover:bg-yellow-300 hover:scale-105 transition transform duration-300">
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                    <a href="/profil" class="px-8 py-4 rounded-full bg-green-600 hover:bg-green-500 text-white font-bold transition shadow-lg hover:shadow-green-500/25 transform hover:-translate-y-1">
                         Tentang Kami
                     </a>
-                    <a href="/berita" class="border-2 border-white text-white font-bold px-8 py-3 rounded-full hover:bg-white hover:text-hmti-primary transition duration-300">
+                    <a href="/berita" class="px-8 py-4 rounded-full border border-gray-600 hover:border-white text-gray-300 hover:text-white font-bold transition hover:bg-white/5">
                         Lihat Berita
                     </a>
                 </div>
             </div>
 
-            <!-- Logo Column -->
-            <div class="w-full md:w-2/5 flex justify-center items-center py-8"> 
-                <div class="relative">
-                    <img src="/img/hmti.png" alt="Logo HMTI Besar" 
-                         class="relative w-48 h-48 md:w-80 md:h-80 object-contain animate-bounce-slow filter drop-shadow-lg" style="border-radius: 50%;"> 
-                </div>
+            <div class="w-full lg:w-6/12 flex justify-center relative">
+                <div class="absolute inset-0 bg-gradient-to-tr from-green-500/20 to-blue-500/20 rounded-full blur-3xl"></div>
+                
+                <img src="/img/hmti.png" alt="HMTI UMRAH" 
+                     class="relative w-64 h-64 md:w-96 md:h-96 object-contain animate-bounce-slow drop-shadow-2xl filter hover:brightness-110 transition duration-500">
             </div>
         </div>
     </div>
     
     <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
-        <svg class="relative block w-[calc(100%+1.3px)] h-10 md:h-16 text-white" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#ffffff"></path>
+        <svg class="relative block w-full min-w-[101%] h-12 md:h-24 text-gray-50" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="currentColor"></path>
         </svg>
     </div>
 </section>
 
-<!-- FEATURES SECTION (Tetap Sama) -->
-<section class="py-20 bg-white">
-    <div class="container mx-auto px-6">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl font-bold text-gray-800 mb-4">Fokus & Nilai Kami</h2>
-            <div class="w-20 h-1 bg-hmti-primary mx-auto rounded-full"></div>
+<section class="relative z-20 -mt-16 px-6">
+    <div class="container mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <a href="/bank-soal" class="bg-white p-6 rounded-2xl shadow-xl border border-gray-100 hover:-translate-y-2 transition duration-300 group flex items-center gap-4">
+                <div class="w-14 h-14 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center text-2xl group-hover:bg-purple-600 group-hover:text-white transition">
+                    <i class="fas fa-book"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-gray-800 group-hover:text-purple-700 transition">Bank Soal</h3>
+                    <p class="text-xs text-gray-500">Arsip UTS, UAS & Materi</p>
+                </div>
+            </a>
+
+            <a href="/mimbar" class="bg-white p-6 rounded-2xl shadow-xl border border-gray-100 hover:-translate-y-2 transition duration-300 group flex items-center gap-4">
+                <div class="w-14 h-14 rounded-xl bg-teal-100 text-teal-600 flex items-center justify-center text-2xl group-hover:bg-teal-600 group-hover:text-white transition">
+                    <i class="fas fa-bullhorn"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-gray-800 group-hover:text-teal-700 transition">Mimbar Bebas</h3>
+                    <p class="text-xs text-gray-500">Sampaikan aspirasimu</p>
+                </div>
+            </a>
+
+            <a href="/kontak" class="bg-white p-6 rounded-2xl shadow-xl border border-gray-100 hover:-translate-y-2 transition duration-300 group flex items-center gap-4">
+                <div class="w-14 h-14 rounded-xl bg-green-100 text-green-600 flex items-center justify-center text-2xl group-hover:bg-green-600 group-hover:text-white transition">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-gray-800 group-hover:text-green-700 transition">Hubungi Kami</h3>
+                    <p class="text-xs text-gray-500">Kritik, Saran & Kerjasama</p>
+                </div>
+            </a>
+
         </div>
+    </div>
+</section>
+
+<section class="pt-24 pb-8 bg-gray-50">
+    <div class="container mx-auto px-6">
+        
+        <div class="text-center max-w-3xl mx-auto mb-12"> <h2 class="text-3xl font-bold text-gray-900 mb-4">Kenapa HMTI?</h2>
+            <div class="h-1 w-20 bg-green-500 mx-auto rounded-full"></div>
+            <p class="mt-4 text-gray-600">Nilai-nilai dasar yang menjadi fondasi pergerakan kami.</p>
+        </div>
+
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Card 1 -->
-            <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition duration-300 text-center group">
-                <div class="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-6 text-hmti-primary group-hover:bg-hmti-primary group-hover:text-white transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                    </svg>
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 hover:shadow-2xl hover:border-green-200 transition duration-300 group text-center">
+                <div class="w-20 h-20 mx-auto rounded-full bg-green-50 text-green-600 flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition">
+                    <i class="fas fa-code"></i>
                 </div>
                 <h3 class="text-xl font-bold text-gray-800 mb-3">Teknologi</h3>
-                <p class="text-gray-600">Mengembangkan hard skill mahasiswa dalam rekayasa perangkat lunak, jaringan, dan kecerdasan buatan.</p>
+                <p class="text-gray-500 text-sm leading-relaxed">Pengembangan skill rekayasa perangkat lunak, jaringan, dan AI yang adaptif.</p>
             </div>
-            <!-- Card 2 -->
-            <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition duration-300 text-center group">
-                <div class="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-6 text-hmti-marine group-hover:bg-hmti-marine group-hover:text-white transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /> 
-                    </svg>
+
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 hover:shadow-2xl hover:border-blue-200 transition duration-300 group text-center">
+                <div class="w-20 h-20 mx-auto rounded-full bg-blue-50 text-blue-600 flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition">
+                    <i class="fas fa-rocket"></i>
                 </div>
-                <h3 class="text-xl font-bold text-gray-800 mb-3">Inovasi Maritim</h3>
-                <p class="text-gray-600">Menerapkan teknologi informasi untuk memecahkan masalah di sektor kelautan dan kemaritiman.</p>
+                <h3 class="text-xl font-bold text-gray-800 mb-3">Inovasi</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">Solusi kreatif berbasis teknologi untuk tantangan kemaritiman dan masyarakat.</p>
             </div>
-            <!-- Card 3 -->
-            <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition duration-300 text-center group">
-                <div class="w-16 h-16 mx-auto bg-yellow-100 rounded-full flex items-center justify-center mb-6 text-yellow-600 group-hover:bg-hmti-accent group-hover:text-hmti-dark transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0z" />
-                    </svg>
+
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 hover:shadow-2xl hover:border-yellow-200 transition duration-300 group text-center">
+                <div class="w-20 h-20 mx-auto rounded-full bg-yellow-50 text-yellow-600 flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition">
+                    <i class="fas fa-heart"></i>
                 </div>
                 <h3 class="text-xl font-bold text-gray-800 mb-3">Keluarga</h3>
-                <p class="text-gray-600">Membangun ikatan persaudaraan yang solid antar sesama mahasiswa Informatika.</p>
+                <p class="text-gray-500 text-sm leading-relaxed">Rumah bagi setiap mahasiswa Informatika untuk tumbuh dan berkembang bersama.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- BERITA TERBARU (UPDATE BAGIAN INI) -->
-<section class="py-20 bg-gray-50">
-    <div class="container mx-auto px-6">
-        <div class="flex justify-between items-end mb-12">
-            <div>
-                <h2 class="text-3xl font-bold text-gray-800">Berita Terbaru</h2>
-                <div class="w-20 h-1 bg-hmti-marine mt-2 rounded-full"></div>
+<section class="pt-12 pb-24 bg-white relative">
+    <div class="absolute top-0 right-0 w-1/3 h-full bg-gray-50 skew-x-12 opacity-50 pointer-events-none"></div>
+
+    <div class="container mx-auto px-6 relative z-10">
+        <div class="flex justify-between items-end mb-10"> <div>
+                <h2 class="text-3xl font-bold text-gray-900">Kabar Terbaru</h2>
+                <p class="text-gray-500 mt-2">Update kegiatan dan prestasi terkini.</p>
             </div>
-            <a href="/berita" class="hidden md:inline-block text-hmti-primary font-semibold hover:text-hmti-dark transition">
-                Lihat Semua Berita &rarr;
+            <a href="/berita" class="hidden md:inline-flex items-center font-bold text-blue-700 hover:text-blue-900 transition">
+                Lihat Semua <i class="fas fa-arrow-right ml-2"></i>
             </a>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <?php if(!empty($berita) && count($berita) > 0) : ?>
                 <?php foreach($berita as $b) : ?>
-                    <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition duration-300 flex flex-col h-full border border-gray-100">
-                        <div class="h-48 bg-gray-200 relative overflow-hidden group">
+                    <article class="bg-white rounded-2xl border border-gray-100 shadow-lg overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition duration-300 flex flex-col h-full group">
+                        <a href="/berita/<?= $b['slug']; ?>" class="h-52 overflow-hidden relative block">
+                            <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition z-10"></div>
+                            
+                            <span class="absolute top-4 left-4 z-20 bg-blue-600 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wide shadow-sm">
+                                <?= $b['nama_kategori'] ?? 'INFO'; ?>
+                            </span>
+
                             <img src="<?= $b['gambar'] ? '/img/berita/' . $b['gambar'] : 'https://via.placeholder.com/400x250?text=HMTI+News' ?>" 
                                  alt="<?= $b['judul']; ?>" 
-                                 class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                            
-                            <!-- LABEL DINAMIS DI SINI -->
-                            <div class="absolute top-4 left-4">
-                                <span class="<?= $b['warna_label'] ?? 'bg-hmti-primary'; ?> text-white text-xs px-3 py-1 rounded-full font-bold uppercase shadow-sm">
-                                    <?= $b['nama_kategori'] ?? 'Umum'; ?>
-                                </span>
-                            </div>
-
-                        </div>
+                                 class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700">
+                        </a>
                         
                         <div class="p-6 flex-grow flex flex-col">
-                            <div class="text-xs text-gray-500 mb-2 flex items-center">
-                                <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                                <?= date('d F Y', strtotime($b['created_at'])); ?>
+                            <div class="text-xs text-gray-400 mb-3 flex items-center">
+                                <i class="far fa-clock mr-2"></i> <?= date('d M Y', strtotime($b['created_at'])); ?>
                             </div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-3 line-clamp-2 hover:text-hmti-primary transition">
+                            
+                            <h3 class="text-lg font-bold text-gray-900 mb-3 leading-snug group-hover:text-blue-700 transition line-clamp-2">
                                 <a href="/berita/<?= $b['slug']; ?>"><?= $b['judul']; ?></a>
                             </h3>
-                            <p class="text-gray-600 text-sm line-clamp-3 mb-4">
+                            
+                            <p class="text-gray-600 text-sm line-clamp-3 mb-4 flex-grow">
                                 <?= strip_tags(substr($b['isi'], 0, 100)); ?>...
                             </p>
-                            <a href="/berita/<?= $b['slug']; ?>" class="mt-auto text-hmti-primary font-bold text-sm hover:text-hmti-dark flex items-center">
-                                Baca Selengkapnya <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                            
+                            <a href="/berita/<?= $b['slug']; ?>" class="text-sm font-bold text-blue-600 hover:underline mt-auto">
+                                Baca Selengkapnya
                             </a>
                         </div>
-                    </div>
+                    </article>
                 <?php endforeach; ?>
             <?php else : ?>
-                <div class="col-span-3 text-center py-12 bg-white rounded-lg border border-dashed border-gray-300">
-                    <p class="text-gray-500">Belum ada berita yang diposting.</p>
+                <div class="col-span-3 py-12 text-center border-2 border-dashed border-gray-200 rounded-xl">
+                    <p class="text-gray-400">Belum ada berita terbaru.</p>
                 </div>
             <?php endif; ?>
         </div>
 
         <div class="mt-8 text-center md:hidden">
-            <a href="/berita" class="btn bg-hmti-light text-hmti-primary font-bold py-3 px-6 rounded-lg w-full block">
+            <a href="/berita" class="btn w-full py-3 bg-gray-100 text-gray-700 font-bold rounded-lg hover:bg-gray-200 transition">
                 Lihat Semua Berita
             </a>
         </div>
     </div>
 </section>
-
-<style>
-    @keyframes bounce-slow {
-        0%, 100% { transform: translateY(-5%); }
-        50% { transform: translateY(5%); }
-    }
-    .animate-bounce-slow {
-        animation: bounce-slow 3s infinite ease-in-out;
-    }
-    /* Animated Gradient CSS sudah di input.css, tidak perlu ditulis ulang disini */
-</style>
 
 <?= $this->endSection(); ?>
