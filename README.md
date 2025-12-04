@@ -7,7 +7,8 @@ Proyek ini adalah implementasi sistem informasi resmi untuk Himpunan Mahasiswa T
 
 ---
 
-<img width="1350" height="611" alt="Image" src="https://github.com/user-attachments/assets/02fe81b1-72a6-4e23-9cb9-1914ed0d7617" />
+<img width="1352" height="605" alt="image" src="https://github.com/user-attachments/assets/1feb81cd-2cb5-48c6-83c9-f47b7483ba88" />
+
 
 ## 🚀 Fitur Utama Proyek
 
