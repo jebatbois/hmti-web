@@ -4,8 +4,10 @@
 
 Proyek ini adalah implementasi sistem informasi resmi untuk Himpunan Mahasiswa Teknik Informatika (HMTI) Fakultas Teknik dan Teknologi Kemaritiman (FTTK) Universitas Maritim Raja Ali Haji (UMRAH), dibangun menggunakan *framework* **CodeIgniter 4** dan **Tailwind CSS**.
 
+
 ---
 
+https://github.com/jebatbois/hmti-web/issues/1#issue-3694137893
 ## 🚀 Fitur Utama Proyek
 
 * **🌐 Multi-Page Design:** Halaman Beranda, Profil Organisasi, Program Kerja, Berita/Kegiatan, Bank Soal, Mimbar Bebas, dan Kontak.
