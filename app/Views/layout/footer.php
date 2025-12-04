@@ -6,7 +6,7 @@
             
             <div class="space-y-4">
                 <h3 class="text-2xl font-extrabold flex items-center tracking-wide group">
-                    HMTI <span class="text-green-500 ml-1">FTTK</span>
+                    HMTI <span class="text-green-500 ml-1">UMRAH</span>
                 </h3>
                 <p class="text-gray-400 text-sm leading-relaxed">
                     Himpunan Mahasiswa Teknik Informatika<br>

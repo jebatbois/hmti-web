@@ -16,7 +16,7 @@ $currentSegment = $uri->getSegment(1) ?: 'home';
                     </div>
                     <div class="flex flex-col">
                         <span class="font-bold text-lg tracking-wide leading-none group-hover:text-green-400 transition drop-shadow-md font-sans">
-                            HMTI <span class="text-green-500">FTTK</span>
+                            HMTI <span class="text-green-500">UMRAH</span>
                         </span>
                     </div>
                 </a>
