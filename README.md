@@ -7,7 +7,7 @@ Proyek ini adalah implementasi sistem informasi resmi untuk Himpunan Mahasiswa T
 
 ---
 
-https://github.com/jebatbois/hmti-web/issues/1#issue-3694137893
+[https://github.com/jebatbois/hmti-web/issues/1#issue-3694137893](https://private-user-images.githubusercontent.com/171344658/522396539-08026725-d89a-429b-ac6f-58dd8790dbf6.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjQ4NDcyMTgsIm5iZiI6MTc2NDg0NjkxOCwicGF0aCI6Ii8xNzEzNDQ2NTgvNTIyMzk2NTM5LTA4MDI2NzI1LWQ4OWEtNDI5Yi1hYzZmLTU4ZGQ4NzkwZGJmNi5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUxMjA0JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MTIwNFQxMTE1MThaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT05ODQxYzMwOTcxZGUyNjc1OGE3ZDg5MzQxZTYyZmU0NDQxYzczZDhlNzVmZjhlNjcyMDJlOWQxZmNmYjE2NjY2JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.bB7ue5PWKBgPt1chFGJz0dTvA82UsQqlfl-U1mmuWPY)
 ## 🚀 Fitur Utama Proyek
 
 * **🌐 Multi-Page Design:** Halaman Beranda, Profil Organisasi, Program Kerja, Berita/Kegiatan, Bank Soal, Mimbar Bebas, dan Kontak.
