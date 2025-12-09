@@ -1,68 +1,138 @@
-# CodeIgniter 4 Application Starter
+# 💻 HMTI FTTK UMRAH Official Website
 
-## What is CodeIgniter?
+✨ **Wadah Aspirasi, Kreasi, dan Inovasi Mahasiswa Teknik Informatika** ✨
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+Proyek ini adalah implementasi sistem informasi resmi untuk Himpunan Mahasiswa Teknik Informatika (HMTI) Fakultas Teknik dan Teknologi Kemaritiman (FTTK) Universitas Maritim Raja Ali Haji (UMRAH), dibangun menggunakan *framework* **CodeIgniter 4** dan **Tailwind CSS**.
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+---
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+<img width="1352" height="605" alt="image" src="https://github.com/user-attachments/assets/1feb81cd-2cb5-48c6-83c9-f47b7483ba88" />
 
-## Installation & updates
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+## 🚀 Fitur Utama Proyek
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+* **🌐 Multi-Page Design:** Halaman Beranda, Profil Organisasi, Program Kerja, Berita/Kegiatan, Bank Soal, Mimbar Bebas, dan Kontak.
+* **🎨 Dark Premium Theme:** Desain modern dengan skema warna Navy/Slate (gelap) yang konsisten di Navbar dan Footer.
+* **🛠️ Module-Based Content:** Modul khusus untuk **Bank Soal** (Arsip Akademik) dan **Mimbar Bebas** (Wall of Aspirations).
+* **🇮🇩 Multi-Language Ready:** Infrastruktur dasar untuk Lokalisasi (ID/EN) menggunakan fitur bawaan CI4 `lang()`.
+* **⚙️ Responsive & Interactive:** Menggunakan Tailwind CSS untuk desain *mobile-first* dan interaksi modern (hover, shadow, animasi).
 
-## Setup
+---
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+## 🛠️ Stack Teknologi
 
-## Important Change with index.php
+| Kategori | Teknologi | Versi Kunci | Catatan |
+| :--- | :--- | :--- | :--- |
+| **Backend** | **PHP** | 8.1+ | Diperlukan |
+| **Framework** | **CodeIgniter 4** | ^4.x | Kerangka kerja utama |
+| **Database** | **MySQL/MariaDB** | - | Digunakan untuk data Berita, Proker, Bank Soal, dan Komentar |
+| **Frontend** | **Tailwind CSS** | ^3.x | Untuk styling dan desain |
+| **Dependencies** | **Composer** | - | Untuk mengelola library PHP |
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+---
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+## ⚙️ Panduan Instalasi (Development)
 
-**Please** read the user guide for a better explanation of how CI4 works!
+Ikuti langkah-langkah ini untuk menjalankan proyek secara lokal:
 
-## Repository Management
+### Prerequisites
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+Pastikan sistem Anda sudah terinstal:
+1.  **PHP** (Versi 8.1 atau terbaru)
+2.  **Composer**
+3.  **MySQL/MariaDB**
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+### Langkah Setup
 
-## Server Requirements
+1.  **Clone Repository:**
+    ```bash
+    git clone https://github.com/jebatbois/hmti-web
+    cd nama-folder-proyek
+    ```
 
-PHP version 8.1 or higher is required, with the following extensions installed:
+2.  **Install Dependencies:**
+    Gunakan Composer untuk menginstal library CodeIgniter:
+    ```bash
+    composer install
+    ```
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+3.  **Konfigurasi Environment:**
+    Salin file environment contoh ke file `.env`:
+    ```bash
+    cp .env.example .env
+    ```
 
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
-> - The end of life date for PHP 8.1 will be December 31, 2025.
+4.  **Atur File `.env`:**
+    Buka file `.env` dan atur parameter berikut:
+    * **baseURL:** Atur URL utama proyek Anda (`app.baseURL`).
+    * **Database:** Isi kredensial database Anda (Nama DB, Username, Password).
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+    ```env
+    #--------------------------------------------------------------------
+    # Database
+    #--------------------------------------------------------------------
+    database.default.hostname = localhost
+    database.default.database = nama_db_hmti
+    database.default.username = user_db_anda
+    database.default.password = password_anda
+    database.default.DBDriver = MySQLi
+    ```
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+5.  **Jalankan Migrasi Database:**
+    Gunakan `spark` CLI untuk membuat tabel database secara otomatis (asumsi file migrasi sudah tersedia):
+    ```bash
+    php spark migrate
+    ```
+
+6.  **Jalankan Server Development:**
+    ```bash
+    php spark serve
+    ```
+    Akses proyek Anda di `http://localhost:8080`.
+
+---
+
+## 🎨 Detail Theming & Kustomisasi
+
+Proyek ini dirancang menggunakan Tailwind CSS. Untuk memastikan semua warna kustom dan font berfungsi, proyek menggunakan **Tailwind CDN yang dikonfigurasi** di file `app/Views/layout/template.php`.
+
+### 1. Palet Warna Kustom
+
+Semua warna utama proyek (Hijau, Biru, Ungu) didefinisikan secara semantik di konfigurasi. Anda dapat menggunakannya langsung di View:
+
+| Palet | Kegunaan | Contoh Class |
+| :--- | :--- | :--- |
+| `hmti` | **Brand Utama (Green)** | `bg-hmti-primary`, `text-hmti-dark` |
+| `news` | **Berita / Navy** | `bg-news-dark`, `text-news-primary` |
+| `academic` | **Bank Soal / Purple** | `bg-academic-primary`, `ring-academic-light` |
+| `mimbar` | **Mimbar Bebas / Teal** | `bg-mimbar-primary`, `font-handwriting` |
+
+### 2. Font Kustom
+
+* **`font-sans`**: Menggunakan font **Inter** (Standard UI).
+* **`font-handwriting`**: Menggunakan font **Patrick Hand** untuk efek tulisan tangan (khusus Mimbar Bebas).
+
+### 3. Debugging Tailwind (Penting!)
+
+Jika Anda mengubah kode atau menambahkan class dan warnanya tidak muncul (masih putih/transparan), pastikan Anda melakukan salah satu hal berikut:
+1.  **Development:** Pastikan tag `<script src="https://cdn.tailwindcss.com"></script>` dan konfigurasi custom di **`template.php`** tidak dihapus atau terblokir.
+2.  **Production:** Hapus CDN dan jalankan build Tailwind CLI secara penuh (`npx tailwindcss -i ... -o ...`).
+
+---
+
+## 🤝 Kontribusi
+
+Kami menyambut kontribusi dan masukan dari komunitas mahasiswa.
+
+1.  *Fork* repository ini.
+2.  Buat branch baru (`git checkout -b feature/nama-fitur`).
+3.  Lakukan *commit* (`git commit -m 'feat: menambahkan fitur X'`).
+4.  *Push* ke branch Anda (`git push origin feature/nama-fitur`).
+5.  Buat **Pull Request**.
+
+---
+
+## 📜 Lisensi
+
+Proyek ini dilisensikan di bawah lisensi MIT.
