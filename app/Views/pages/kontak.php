@@ -59,15 +59,28 @@
                         </div>
                     </div>
 
-                    <div class="flex items-center gap-4">
+                    <div class="flex items-center mb-6 gap-4">
                         <div class="w-12 h-12 rounded-full flex items-center justify-center shadow-sm transition duration-300 transform group-hover:scale-110"
                              style="background-color: #fce7f3; color: #db2777;">
                             <i class="fab fa-instagram text-2xl"></i>
                         </div>
                         <div>
                             <p class="text-[10px] text-gray-400 uppercase font-bold tracking-widest mb-0.5">Instagram</p>
-                            <a href="https://instagram.com/hmti_umrah" target="_blank" class="font-bold text-lg transition hover:underline" style="color: #db2777;">
-                                @hmti_umrah
+                            <a href="https://instagram.com/umrahhmti_" target="_blank" class="font-bold text-lg transition hover:underline" style="color: #db2777;">
+                                @umrahhmti_
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center shadow-sm transition duration-300 transform group-hover:scale-110"
+                             style="background-color: #f0f0f0; color: #000000;">
+                            <i class="fab fa-tiktok text-2xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-gray-400 uppercase font-bold tracking-widest mb-0.5">TikTok</p>
+                            <a href="https://www.tiktok.com/@hmti.umrah" target="_blank" class="font-bold text-lg transition hover:underline" style="color: #000000;">
+                                @hmti.umrah
                             </a>
                         </div>
                     </div>

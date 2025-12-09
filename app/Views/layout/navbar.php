@@ -5,7 +5,11 @@ $currentSegment = $uri->getSegment(1) ?: 'home';
 
 <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 text-white pt-4">
     
-    <div id="nav-container" class="mx-auto max-w-[95%] rounded-full px-6 lg:px-8 transition-all duration-500 bg-[#0b121e]/80 backdrop-blur-md border border-white/10 shadow-lg">
+    <div id="nav-container" 
+     class="mx-auto w-full max-w-[90%] px-4 lg:px-8 rounded-full 
+            transition-all duration-500 bg-[#0b121e]/80 backdrop-blur-md 
+            border border-white/10 shadow-lg overflow-hidden">
+
         <div class="flex justify-between h-16 items-center">
             
             <div class="flex-shrink-0 flex items-center group cursor-pointer">

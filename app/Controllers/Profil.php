@@ -29,12 +29,6 @@ class Profil extends BaseController
         // Jangan gunakan $semuaPeriode[0] karena itu akan mengambil tahun terbaru (2025/2026).
         $periodeAktif = $this->request->getGet('periode') ?? '2024/2025';
 
-        // --- LOGIKA REDIRECT KHUSUS ---
-        // Hanya redirect jika user SECARA EKSPLISIT memilih/meminta periode 2025/2026
-        if ($periodeAktif == '2025/2026') {
-            return redirect()->to('/nawakara');
-        }
-
         // --- LOGIKA NAMA KABINET ---
         $listKabinet = [
             '2024/2025' => 'Kabinet Sahitya',

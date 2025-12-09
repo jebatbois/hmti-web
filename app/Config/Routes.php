@@ -83,6 +83,7 @@ $routes->group('admin', ['filter' => 'auth'], function($routes) {
 
 $routes->get('/', 'Home::index');
 $routes->get('/profil', 'Profil::index');
+$routes->get('/nawakara', 'Profil::index');
 
 // Berita
 $routes->get('/berita', 'Berita::index');
@@ -99,5 +100,3 @@ $routes->get('/mimbar', 'Interaksi::mimbar');
 $routes->post('/mimbar/kirim', 'Interaksi::kirimMimbar');
 
 $routes->get('/bank-soal', 'BankSoal::index');
-
-$routes->get('/nawakara', 'ComingSoon::index');
