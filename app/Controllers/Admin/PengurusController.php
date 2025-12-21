@@ -54,57 +54,50 @@ class PengurusController extends BaseController
                     'base_urutan' => 0,
                     'jabatan' => [
                         'Ketua Himpunan', 
-                        'Wakil Ketua', 
-                        'Sekretaris Umum', 
+                        'Wakil Ketua Himpunan', 
                         'Sekretaris Umum 1', 
                         'Sekretaris Umum 2', 
                         'Bendahara Umum',
-                        'Bendahara Umum 1',
-                        'Bendahara Umum 2'
                     ],
                     'sub_divisi' => []
                 ],
-                'Departemen PPM' => [
+                'Departemen PSDM' => [
                     'base_urutan' => 10,
                     'jabatan' => ['Kepala Departemen', 'Sekretaris Departemen', 'Kepala Divisi', 'Staff'],
                     'sub_divisi' => [
-                        'Divisi Pengembangan SDM & Kaderisasi',
-                        'Divisi Hubungan & Relasi',
-                        'Divisi Sosial & Pengabdian',
-                        'Divisi Edukasi & Kepemimpinan'
+                        'Divisi Pengembangan SDM',
+                        'Divisi Pembinaan dan Kaderisasi Sehat'
                     ]
                 ],
                 'Departemen Kominfo' => [
                     'base_urutan' => 30,
                     'jabatan' => ['Kepala Departemen', 'Sekretaris Departemen', 'Kepala Divisi', 'Staff'],
                     'sub_divisi' => [
-                        'Divisi Pengembangan Sistem & Infrastruktur',
-                        'Divisi Desain & Produksi Multimedia',
-                        'Divisi Publikasi & Dokumentasi',
-                        'Divisi Konten & Branding Digital'
+                        'Divisi Multimedia dan IT',
+                        'Divisi Media & Publikasi'
                     ]
                 ],
                 'Departemen Litbang' => [
                     'base_urutan' => 50,
                     'jabatan' => ['Kepala Departemen', 'Sekretaris Departemen', 'Kepala Divisi', 'Staff'],
                     'sub_divisi' => [
-                        'Divisi Pelatihan & Akademik',
-                        'Divisi Riset & Inovasi',
-                        'Divisi Kompetisi & Prestasi'
+                        'Divisi Pengembangan Akademik',
+                        'Divisi Penelitian & Riset'
                     ]
                 ],
                 'Departemen Kewirausahaan' => [
                     'base_urutan' => 70,
                     'jabatan' => ['Kepala Departemen', 'Sekretaris Departemen', 'Kepala Divisi', 'Staff'],
                     'sub_divisi' => [
-                        'Divisi Bisnis & Inovasi',
+                        'Divisi Pengembangan Usaha',
                     ]
                 ],
                 'Departemen Minat & Bakat' => [
                     'base_urutan' => 90,
                     'jabatan' => ['Kepala Departemen', 'Sekretaris Departemen', 'Kepala Divisi', 'Staff'],
                     'sub_divisi' => [
-                        'Divisi Event & Kreativitas',
+                        'Divisi Seni & Kreativitas',
+                        'Divisi Olahraga & E-Sport'
                     ]
                 ],
             ];

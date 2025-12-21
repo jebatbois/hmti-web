@@ -32,7 +32,7 @@ class Profil extends BaseController
         // --- LOGIKA NAMA KABINET ---
         $listKabinet = [
             '2024/2025' => 'Kabinet Sahitya',
-            '2025/2026' => 'Kabinet Nawakara',
+            '2025/2026' => 'Kabinet Adhisatya',
         ];
 
         $namaKabinet = $listKabinet[$periodeAktif] ?? 'Kabinet HMTI'; 
